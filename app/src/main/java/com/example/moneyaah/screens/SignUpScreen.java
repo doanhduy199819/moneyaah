@@ -13,12 +13,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
-public class SignInScreen extends AppCompatActivity {
+public class SignUpScreen extends AppCompatActivity {
 
     GoogleSignInButton signInButton;
     GoogleSignInClient mGoogleSignInClient;
@@ -27,10 +26,10 @@ public class SignInScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in_screen);
+        setContentView(R.layout.activity_sign_up_screen);
         getSupportActionBar().hide();
 
-        signInButton = (GoogleSignInButton) findViewById(R.id.sign_in_button);
+        signInButton = (GoogleSignInButton) findViewById(R.id.sign_up_button);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -41,7 +40,7 @@ public class SignInScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.sign_in_button:
+                    case R.id.sign_up_button:
                         signIn();
                         break;
                     // ...
@@ -73,7 +72,7 @@ public class SignInScreen extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            Toast.makeText(this, "Sign in successful", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sign up successful", Toast.LENGTH_SHORT).show();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

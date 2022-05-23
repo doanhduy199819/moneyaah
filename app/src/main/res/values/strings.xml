@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Moneyaah</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_up_google">Sign up with Google</string>
 </resources>

@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Sign in"
+        android:text="Sign up"
         android:textColor="#000000"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_password" />
 
     <ImageButton
-        android:id="@+id/btn_sign_in"
+        android:id="@+id/btn_sign_up"
         android:layout_width="392dp"
         android:layout_height="163dp"
         android:layout_marginBottom="92dp"
@@ -110,27 +110,27 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tv_sign_in"
+        android:id="@+id/tv_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:text="Sign in"
+        android:text="Sign up"
         android:textSize="25sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_sign_in" />
+        app:layout_constraintTop_toTopOf="@+id/btn_sign_up" />
 
     <com.shobhitpuri.custombuttons.GoogleSignInButton
-        android:id="@+id/sign_in_button"
+        android:id="@+id/sign_up_button"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/sign_in_google"
+        android:text="@string/sign_up_google"
         android:padding="5dp"
         android:layout_centerInParent="true"
         android:layout_marginBottom="20dp"/>

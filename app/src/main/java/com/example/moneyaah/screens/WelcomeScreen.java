@@ -14,6 +14,7 @@ import com.example.moneyaah.R;
 public class WelcomeScreen extends AppCompatActivity {
 
     private ImageButton btnSignIn;
+    private ImageButton btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +23,21 @@ public class WelcomeScreen extends AppCompatActivity {
         getSupportActionBar().hide();
 
         btnSignIn = (ImageButton) findViewById(R.id.btn_sign_in);
+        btnSignUp = (ImageButton) findViewById(R.id.btn_sign_up);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent signInScreenIntent = new Intent(WelcomeScreen.this, SignInScreen.class);
                 startActivity(signInScreenIntent);
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signUpScreenIntent = new Intent(WelcomeScreen.this, SignUpScreen.class);
+                startActivity(signUpScreenIntent);
             }
         });
     }
