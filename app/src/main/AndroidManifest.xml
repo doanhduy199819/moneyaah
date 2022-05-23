@@ -10,13 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
-            android:name=".screens.WelcomeScreen"
+            android:name=".screens.SignInScreen"
             android:exported="false" />
+        <activity
+            android:name=".screens.WelcomeScreen"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".screens.LaunchScreen" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".screens.LaunchScreen"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
