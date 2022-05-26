@@ -90,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:layout_marginRight="26dp"
         android:layout_marginLeft="26dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -134,5 +134,15 @@
         android:padding="5dp"
         android:layout_centerInParent="true"
         android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:id="@+id/img_tick"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_email"
+        app:layout_constraintEnd_toEndOf="@+id/edt_email"
+        app:srcCompat="@drawable/tick"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
