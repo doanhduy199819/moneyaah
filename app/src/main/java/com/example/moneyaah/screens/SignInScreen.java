@@ -63,37 +63,21 @@ public class SignInScreen extends AppCompatActivity {
             }
         });
 
-//        btnSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(edtEmail.getText().toString().matches(emailPattern)){
-//                    Log.e("Error", "Wrong format");
-//                }
-//            }
-//        });
-
         edtEmail.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String email = edtEmail.getText().toString();
                 if (email.matches(emailPattern) && s.length() > 0)
                 {
-//                    Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
-                    // or
                     imgTick.setVisibility(View.VISIBLE);
                 }
                 else
                 {
-//                    Toast.makeText(getApplicationContext(),"Invalid email address",Toast.LENGTH_SHORT).show();
-                    //or
-//                    imgCross.setVisibility(View.VISIBLE);
                     imgTick.setVisibility(View.GONE);
                 }
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // other stuffs
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // other stuffs
             }
         });
 

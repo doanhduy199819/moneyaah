@@ -53,7 +53,7 @@ public class SignUpScreen extends AppCompatActivity {
                     case R.id.sign_up_button:
                         signIn();
                         break;
-                    // ...
+
                 }
             }
         });
@@ -63,23 +63,16 @@ public class SignUpScreen extends AppCompatActivity {
                 String email = edtEmail.getText().toString();
                 if (email.matches(emailPattern) && s.length() > 0)
                 {
-//                    Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
-                    // or
                     imgTick.setVisibility(View.VISIBLE);
                 }
                 else
                 {
-//                    Toast.makeText(getApplicationContext(),"Invalid email address",Toast.LENGTH_SHORT).show();
-                    //or
-//                    imgCross.setVisibility(View.VISIBLE);
                     imgTick.setVisibility(View.GONE);
                 }
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // other stuffs
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // other stuffs
             }
         });
     }
