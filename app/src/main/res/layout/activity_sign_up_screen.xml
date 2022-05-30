@@ -25,13 +25,13 @@
         android:id="@+id/tv_welcome"
         android:layout_width="150dp"
         android:layout_height="73dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Welcome Back  "
+        android:text="Welcome Back"
         android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_app_name" />
 
@@ -39,13 +39,13 @@
         android:id="@+id/tv_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Sign up"
         android:textColor="#000000"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_welcome" />
 
@@ -53,11 +53,11 @@
         android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="Email Address"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.092"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header" />
 
@@ -77,11 +77,11 @@
         android:id="@+id/tv_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:text="Password"
+        android:layout_marginTop="108dp"
+        android:text="Enter password"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_header" />
 
@@ -95,6 +95,7 @@
         android:layout_marginLeft="26dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:hint="Password's length must be greater than 6"
         app:layout_constraintTop_toBottomOf="@+id/tv_password" />
 
     <ImageButton
@@ -103,11 +104,37 @@
         android:layout_height="163dp"
         android:layout_marginBottom="92dp"
         android:backgroundTint="#00000000"
+        android:contentDescription="Navigate to sign up screen"
         android:src="@drawable/btn_signin_final"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_repassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="192dp"
+        android:text="Re-enter Password"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_header" />
+
+    <EditText
+        android:id="@+id/edt_repassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_repassword" />
 
     <TextView
         android:id="@+id/tv_sign_up"
@@ -142,6 +169,36 @@
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/edt_email"
         app:layout_constraintEnd_toEndOf="@+id/edt_email"
+        app:srcCompat="@drawable/tick"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_tick1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_repassword"
+        app:layout_constraintEnd_toEndOf="@+id/edt_repassword"
+        app:srcCompat="@drawable/cross"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_tick2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_password"
+        app:layout_constraintEnd_toEndOf="@+id/edt_password"
+        app:srcCompat="@drawable/tick"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/img_tick3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/edt_repassword"
+        app:layout_constraintEnd_toEndOf="@+id/edt_repassword"
         app:srcCompat="@drawable/tick"
         android:visibility="gone"/>
 

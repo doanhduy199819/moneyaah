@@ -29,7 +29,15 @@ public class SignUpScreen extends AppCompatActivity {
 
     private EditText edtEmail;
     private ImageView imgTick;
+    private ImageView imgTick1;
+    private ImageView img_tick2;
+    private ImageView img_tick3;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private EditText edtReEnterPassword;
+    private EditText edtpassword;
+
+    String passwordStr;
+    String reEnterPasswordStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +52,12 @@ public class SignUpScreen extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         imgTick = findViewById(R.id.img_tick);
+        imgTick1 = findViewById(R.id.img_tick1);
+        img_tick2 = findViewById(R.id.img_tick2);
+        img_tick3 = findViewById(R.id.img_tick3);
         edtEmail = findViewById(R.id.edt_email);
+        edtReEnterPassword = findViewById(R.id.edt_repassword);
+        edtpassword = findViewById(R.id.edt_password);
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +86,58 @@ public class SignUpScreen extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        passwordStr = edtpassword.getText().toString();
+        edtpassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(edtpassword.getText().toString().length() < 6){
+//                    Toast.makeText(SignUpScreen.this, "False", Toast.LENGTH_SHORT).show();
+                    img_tick2.setVisibility(View.GONE);
+                }
+                else{
+//                    Toast.makeText(SignUpScreen.this, "True", Toast.LENGTH_SHORT).show();
+                    img_tick2.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+//        reEnterPasswordStr = edtReEnterPassword.getText().toString();
+        edtReEnterPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(edtpassword.getText().toString().equals(edtReEnterPassword.getText().toString())){
+//                    Toast.makeText(SignUpScreen.this, "Ok", Toast.LENGTH_SHORT).show();
+                    imgTick1.setVisibility(View.GONE);
+                    img_tick3.setVisibility(View.VISIBLE);
+
+                }
+                else{
+                    imgTick1.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
