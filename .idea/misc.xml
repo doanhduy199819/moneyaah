@@ -9,7 +9,8 @@
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_wallet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22276422764227644" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_noti.xml" value="0.1716485507246377" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.15648148148148147" />

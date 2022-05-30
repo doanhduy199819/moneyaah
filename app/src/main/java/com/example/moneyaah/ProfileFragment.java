@@ -23,8 +23,8 @@ public class ProfileFragment extends Fragment {
     ImageButton editButton;
     Button updateButton;
 
-    TextView email, password, reenterPassword, reenterLabel;
-    EditText edit_email, edit_password, edit_reenter_password;
+    TextView emailContent;
+    EditText editEmail, editOldPassword, editNewPassword, editConfirmPassword;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,65 +72,68 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        setUpUI(view);
+        setUpEvent(view);
 
-        // Set up UI
-        email = view.findViewById(R.id.email);
-        password = view.findViewById(R.id.password);
-        reenterPassword = view.findViewById(R.id.reenter_password);
-        reenterLabel = view.findViewById(R.id.reenter_password_label);
+        return view;
+    }
 
-        edit_email = view.findViewById(R.id.edit_email);
-        edit_password = view.findViewById(R.id.edit_password);
-        edit_reenter_password = view.findViewById(R.id.edit_reenter_password);
+    private void setUpUI(View mainView) {
+        editButton = mainView.findViewById(R.id.button_edit);
 
+        emailContent = mainView.findViewById(R.id.email_content);
+        editEmail = mainView.findViewById(R.id.edit_email);
 
-        editButton = view.findViewById(R.id.button_edit);
+        editOldPassword = mainView.findViewById(R.id.edit_old_password);
+        editNewPassword = mainView.findViewById(R.id.edit_new_password);
+        editConfirmPassword = mainView.findViewById(R.id.edit_confirm_new_password);
+
+        updateButton = mainView.findViewById(R.id.button_update);
+    }
+
+    private void setUpEvent(View mainView) {
+
+        // Edit
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email.setVisibility(View.INVISIBLE);
-                password.setVisibility(View.INVISIBLE);
-//                reenterPassword.setVisibility(View.INVISIBLE);
+                emailContent.setVisibility(View.INVISIBLE);
+                editEmail.setVisibility(View.VISIBLE);
 
-                edit_email.setVisibility(View.VISIBLE);
-                edit_password.setVisibility(View.VISIBLE);
-                reenterLabel.setVisibility(View.VISIBLE);
-                edit_reenter_password.setVisibility(View.VISIBLE);
-
-                updateButton.setEnabled(true);
+                editEmail.setText(emailContent.getText());
             }
         });
 
-        updateButton = view.findViewById(R.id.button_update);
+        // Update
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailText = edit_email.getText().toString();
-                String passwordText = edit_password.getText().toString();
-                String reenterText = edit_reenter_password.getText().toString();
 
-                if (passwordText != reenterText) {
-                    Toast.makeText(getActivity(), "Password does not match", Toast.LENGTH_SHORT).show();
-                    return;
+                // Information
+                emailContent.setText(editEmail.getText());
+                emailContent.setVisibility(View.VISIBLE);
+                editEmail.setVisibility(View.INVISIBLE);
+
+                // Password
+                String password = "1234";
+                String oldPass = editOldPassword.getText().toString();
+                String newPass = editNewPassword.getText().toString();
+                String confirmPass = editConfirmPassword.getText().toString();
+
+                if (!oldPass.equals(password)) {
+                    // Wrong password
                 }
-
-                email.setText(emailText);
-                password.setText(passwordText);
-                reenterPassword.setText(reenterText);
-
-                email.setVisibility(View.VISIBLE);
-                password.setVisibility(View.VISIBLE);
-                reenterPassword.setVisibility(View.VISIBLE);
-
-                edit_email.setVisibility(View.INVISIBLE);
-                edit_password.setVisibility(View.INVISIBLE);
-                reenterLabel.setVisibility(View.INVISIBLE);
-                reenterPassword.setVisibility(View.INVISIBLE);
-                edit_reenter_password.setVisibility(View.INVISIBLE);
-
-                updateButton.setEnabled(false);
+                else if (!newPass.equals(confirmPass)) {
+                    editNewPassword.setText("");
+                    editConfirmPassword.setText("");
+                }
+                else {
+                    // Change user password
+                    editOldPassword.setText("");
+                    editNewPassword.setText("");
+                    editConfirmPassword.setText("");
+                }
             }
         });
-        return view;
     }
 }
