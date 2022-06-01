@@ -3,13 +3,11 @@ package com.example.moneyaah.screens;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -45,6 +43,16 @@ public class SignInScreen extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btn_sign_in);
         edtEmail = findViewById(R.id.edt_email);
         imgTick = findViewById(R.id.img_tick);
+
+        // Navigating to Note Screen to test
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignInScreen.this, HomeScreen.class);
+                startActivity(intent);
+            }
+        });
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
