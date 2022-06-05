@@ -1,8 +1,10 @@
 package com.example.moneyaah.fragments;
 
 import android.app.DatePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,6 +17,8 @@ import android.widget.Spinner;
 
 import com.example.moneyaah.R;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,6 +28,7 @@ public class IncomeFragment extends Fragment {
 
     private EditText selectDate;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +56,10 @@ public class IncomeFragment extends Fragment {
                 datePickerDialog.show();
             }
         });
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        selectDate.setText(dtf.format(now).toString());
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(),  android.R.layout.simple_spinner_dropdown_item, items);
 //set the spinners adapter to the previously created one.

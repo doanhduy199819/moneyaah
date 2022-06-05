@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
-
+        <activity
+            android:name=".screens.StatisticScreen"
+            android:exported="false" />
         <activity
             android:name=".screens.SignUpScreen"
             android:exported="false" />
@@ -21,9 +23,9 @@
         <activity
             android:name=".screens.WelcomeScreen"
             android:exported="false" />
-         <activity
-         android:name=".screens.HomeScreen"
-         android:exported="false" />
+        <activity
+            android:name=".screens.HomeScreen"
+            android:exported="false" />
         <activity
             android:name=".screens.NoteScreen"
             android:exported="false" />
