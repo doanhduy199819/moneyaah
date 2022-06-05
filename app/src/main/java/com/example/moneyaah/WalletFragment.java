@@ -3,10 +3,14 @@ package com.example.moneyaah;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,8 @@ public class WalletFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private FloatingActionButton mAddRecordButton;
 
     public WalletFragment() {
         // Required empty public constructor
@@ -59,6 +65,34 @@ public class WalletFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wallet, container, false);
+        View view = inflater.inflate(R.layout.fragment_wallet, container, false);
+
+        setUpUI(view);
+        setUpEvents(view);
+
+        return view;
+    }
+
+    private void setUpUI(View view) {
+        mAddRecordButton = view.findViewById(R.id.button_add_record);
+
+        // Add month history fragment
+        FragmentManager fm = getChildFragmentManager();
+        Fragment fragment = fm.findFragmentById(R.id.history_fragment_container);
+
+        if (fragment == null) {
+            fragment = new HistoryWalletFragment();
+            fm.beginTransaction()
+                    .add(R.id.history_fragment_container, fragment)
+                    .commit();
+        }
+    }
+    private void setUpEvents(View view) {
+        mAddRecordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Change to Add Record Screen", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

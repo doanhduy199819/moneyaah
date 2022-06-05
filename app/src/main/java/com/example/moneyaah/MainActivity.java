@@ -13,6 +13,10 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView mBottomNavigationView;
@@ -26,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RecordData r = RecordData.getInstance();
+//        List<Record> todayList = r.getTodayList();
+        List<Record> dayTwo = r.getList(2, Calendar.JUNE);
+//        List<List<Record>> thisMonthList = r.getList(Calendar.JUNE);
 
         setUpUI();
     }
