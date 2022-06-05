@@ -87,6 +87,7 @@ public class HistoryWalletFragment extends Fragment {
                 return fragment;
             }
         });
+        mViewPager.setCurrentItem(currentMonth);
         return view;
     }
 }
