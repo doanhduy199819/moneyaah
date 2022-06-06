@@ -10,25 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activity.IntroActivity"
+            android:exported="false"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/Theme.Moneyaah.NoActionBar" />
+        <activity
+            android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".WalletActivity"
+            android:name=".activity.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.WalletActivity"
             android:exported="false" />
         <activity
             android:name=".NotificationActivity"
-            android:exported="true">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+            android:exported="true" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

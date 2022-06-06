@@ -1,9 +1,12 @@
-package com.example.moneyaah;
+package com.example.moneyaah.fragment;
+
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +16,21 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moneyaah.Constants;
+import com.example.moneyaah.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    FirebaseUser mUser;
 
     ImageButton editButton;
     Button updateButton;
@@ -64,6 +76,7 @@ public class ProfileFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -132,5 +145,35 @@ public class ProfileFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public boolean updateEmail(String email) {
+        final boolean[] flag = {false};
+        mUser.updateEmail("email")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(Constants.TAG, "User email address updated.");
+                            flag[0] = true;
+                        }
+                    }
+                });
+        return flag[0];
+    }
+
+    public boolean updatePassword(String password) {
+        final boolean[] flag = {false};
+        mUser.updatePassword(password)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(Constants.TAG, "User password updated.");
+                            flag[0] = true;
+                        }
+                    }
+                });
+        return flag[0];
     }
 }
