@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.Record;
 import com.example.moneyaah.RecordData;
+import com.example.moneyaah.StatisticsFragment;
 import com.example.moneyaah.fragment.NotificationFragment;
 import com.example.moneyaah.fragment.ProfileFragment;
 import com.example.moneyaah.R;
