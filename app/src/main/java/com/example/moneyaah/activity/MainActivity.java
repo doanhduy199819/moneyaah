@@ -1,4 +1,4 @@
-package com.example.moneyaah;
+package com.example.moneyaah.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,11 +7,22 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.moneyaah.Helper;
+import com.example.moneyaah.Record;
+import com.example.moneyaah.RecordData;
+import com.example.moneyaah.fragment.NotificationFragment;
+import com.example.moneyaah.fragment.ProfileFragment;
+import com.example.moneyaah.R;
+import com.example.moneyaah.fragment.WalletFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,13 +35,20 @@ public class MainActivity extends AppCompatActivity {
     Fragment walletFragment;
     Fragment notiFragment;
     Fragment profileFragment;
+    FirebaseUser mUser;
     Fragment statisticsFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (mUser != null) {
+            String user = mUser.getEmail();
+            Helper.saveUser(this, user);
+        } else {
+            Helper.navigate(MainActivity.this, LoginActivity.class, this);
+        }
 
         RecordData r = RecordData.getInstance();
 //        List<Record> todayList = r.getTodayList();
@@ -87,5 +105,18 @@ public class MainActivity extends AppCompatActivity {
         fm.beginTransaction()
                 .replace(R.id.fragment_container, f)
                 .commit();
+    }
+
+    private void logout() {
+        Handler h = new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Helper.logout();
+            }
+        }, 200);
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 }
