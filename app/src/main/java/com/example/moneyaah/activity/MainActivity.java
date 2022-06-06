@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment notiFragment;
     Fragment profileFragment;
     FirebaseUser mUser;
+    Fragment statisticsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         walletFragment = new WalletFragment();
         notiFragment = new NotificationFragment();
         profileFragment = new ProfileFragment();
+        statisticsFragment = new StatisticsFragment();
 
         // Set wallet by default
         loadFragment(walletFragment);
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.wallet:
                         loadFragment(walletFragment);
+                        return true;
+                    case R.id.statistics:
+                        loadFragment(statisticsFragment);
                         return true;
                     case R.id.notification:
                         loadFragment(notiFragment);
