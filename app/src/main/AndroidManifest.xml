@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
-<<<<<<< HEAD
             android:name=".activity.IntroActivity"
             android:exported="false"
             android:label="@string/title_activity_splash"
@@ -18,18 +17,6 @@
         <activity
             android:name=".activity.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".activity.ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.WalletActivity"
-=======
-            android:name=".LoginActivity"
->>>>>>> origin
-            android:exported="false" />
-        <activity
-            android:name=".NotificationActivity"
-            android:exported="true" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">

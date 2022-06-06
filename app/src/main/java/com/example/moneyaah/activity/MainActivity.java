@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.moneyaah.Helper;
+import com.example.moneyaah.Record;
+import com.example.moneyaah.RecordData;
 import com.example.moneyaah.fragment.NotificationFragment;
 import com.example.moneyaah.fragment.ProfileFragment;
 import com.example.moneyaah.R;
@@ -39,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD:app/src/main/java/com/example/moneyaah/activity/MainActivity.java
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mUser != null) {
             String user = mUser.getEmail();
@@ -47,14 +48,12 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Helper.navigate(MainActivity.this, LoginActivity.class, this);
         }
-=======
 
         RecordData r = RecordData.getInstance();
 //        List<Record> todayList = r.getTodayList();
         List<Record> dayTwo = r.getList(2, Calendar.JUNE);
 //        List<List<Record>> thisMonthList = r.getList(Calendar.JUNE);
 
->>>>>>> origin:app/src/main/java/com/example/moneyaah/MainActivity.java
         setUpUI();
     }
 
