@@ -1,39 +1,42 @@
-package com.example.moneyaah.fragment;
+package com.example.moneyaah;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
-import com.example.moneyaah.NotiArrayAdapter;
-import com.example.moneyaah.model.Notification;
-import com.example.moneyaah.R;
-
-import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NotificationFragment#newInstance} factory method to
+ * Use the {@link HistoryWalletFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotificationFragment extends Fragment {
+public class HistoryWalletFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ViewPager mViewPager;
+    private int currentMonth;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ListView mListView;
 
-    public NotificationFragment() {
+    public HistoryWalletFragment() {
         // Required empty public constructor
+
+        currentMonth = Calendar.getInstance().get(Calendar.MONTH);
     }
 
     /**
@@ -42,11 +45,11 @@ public class NotificationFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NotificationFragment.
+     * @return A new instance of fragment HistoryWalletFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+    public static HistoryWalletFragment newInstance(String param1, String param2) {
+        HistoryWalletFragment fragment = new HistoryWalletFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,21 +70,24 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notification, container, false);
+        View view = inflater.inflate(R.layout.fragment_history_wallet, container, false);
 
-        mListView = view.findViewById(R.id.list_notification);
-        ArrayList<Notification> notiArray = new ArrayList<Notification>();
+        mViewPager = view.findViewById(R.id.history_pager);
+        FragmentManager fm = getChildFragmentManager();
+        mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
+            @Override
+            public int getCount() {
+                return 12;  // 12 thang
+            }
 
-
-        // Fake data
-        for (int i=0; i<3; ++i) {
-            String title = "Notification " + i;
-            String content = "I'm hungry";
-            notiArray.add(new Notification(title, content));
-        }
-        NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(getActivity(),
-                notiArray);
-        mListView.setAdapter(list_noti_adapter);
+            @NonNull
+            @Override
+            public Fragment getItem(int position) {
+                Fragment fragment = new MonthHistoryFragment(position);
+                return fragment;
+            }
+        });
+        mViewPager.setCurrentItem(currentMonth);
         return view;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.moneyaah.fragment;
+package com.example.moneyaah;
 
 import android.os.Bundle;
 
@@ -7,20 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-
-import com.example.moneyaah.NotiArrayAdapter;
-import com.example.moneyaah.model.Notification;
-import com.example.moneyaah.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link NotificationFragment#newInstance} factory method to
+ * Use the {@link StatisticsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotificationFragment extends Fragment {
+public class StatisticsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,9 +23,8 @@ public class NotificationFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ListView mListView;
 
-    public NotificationFragment() {
+    public StatisticsFragment() {
         // Required empty public constructor
     }
 
@@ -42,11 +34,11 @@ public class NotificationFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NotificationFragment.
+     * @return A new instance of fragment StatisticsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NotificationFragment newInstance(String param1, String param2) {
-        NotificationFragment fragment = new NotificationFragment();
+    public static StatisticsFragment newInstance(String param1, String param2) {
+        StatisticsFragment fragment = new StatisticsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,21 +59,6 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notification, container, false);
-
-        mListView = view.findViewById(R.id.list_notification);
-        ArrayList<Notification> notiArray = new ArrayList<Notification>();
-
-
-        // Fake data
-        for (int i=0; i<3; ++i) {
-            String title = "Notification " + i;
-            String content = "I'm hungry";
-            notiArray.add(new Notification(title, content));
-        }
-        NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(getActivity(),
-                notiArray);
-        mListView.setAdapter(list_noti_adapter);
-        return view;
+        return inflater.inflate(R.layout.fragment_statistics, container, false);
     }
 }

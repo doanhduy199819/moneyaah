@@ -22,6 +22,10 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView mBottomNavigationView;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD:app/src/main/java/com/example/moneyaah/activity/MainActivity.java
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mUser != null) {
             String user = mUser.getEmail();
@@ -42,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Helper.navigate(MainActivity.this, LoginActivity.class, this);
         }
+=======
+
+        RecordData r = RecordData.getInstance();
+//        List<Record> todayList = r.getTodayList();
+        List<Record> dayTwo = r.getList(2, Calendar.JUNE);
+//        List<List<Record>> thisMonthList = r.getList(Calendar.JUNE);
+
+>>>>>>> origin:app/src/main/java/com/example/moneyaah/MainActivity.java
         setUpUI();
     }
 
