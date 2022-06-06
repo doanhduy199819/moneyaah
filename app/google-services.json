@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1068662431580",
-    "project_id": "moneyahh-b0728",
-    "storage_bucket": "moneyahh-b0728.appspot.com"
+    "project_number": "760910446077",
+    "project_id": "moneyaah-cd826",
+    "storage_bucket": "moneyaah-cd826.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1068662431580:android:03f74d8244018c8a432b99",
+        "mobilesdk_app_id": "1:760910446077:android:fb653982b063b52c432d94",
         "android_client_info": {
           "package_name": "com.example.moneyaah"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1068662431580-6ppj22iju8m48e7uctoqn4i32c8oktt2.apps.googleusercontent.com",
+          "client_id": "760910446077-7gfg8conjpvr06cp4ed1p9oh271jkpk8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDzGnYab6i1rC0luwqIE692GmBeuN5GT3o"
+          "current_key": "AIzaSyANIZP5ToXR9v4hvxDCJueH5fXtUc3jqAI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1068662431580-6ppj22iju8m48e7uctoqn4i32c8oktt2.apps.googleusercontent.com",
+              "client_id": "760910446077-7gfg8conjpvr06cp4ed1p9oh271jkpk8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

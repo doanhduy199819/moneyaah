@@ -2,24 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    tools:context=".fragment.WalletFragment">
+    tools:context=".WalletFragment">
 
     <!-- Whole Screen/ Month-History Fragment here -->
     <FrameLayout
         android:id="@+id/history_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/tvAmount"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="40dp"
-            android:text="TextView"
-            android:textSize="30sp" />
+        android:layout_height="match_parent" >
 
     </FrameLayout>
 

@@ -10,15 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
-            android:name=".activity.IntroActivity"
-            android:exported="false"
-            android:label="@string/title_activity_splash"
-            android:theme="@style/Theme.Moneyaah.NoActionBar" />
-        <activity
-            android:name=".activity.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
