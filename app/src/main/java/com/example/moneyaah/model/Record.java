@@ -2,8 +2,12 @@ package com.example.moneyaah.model;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Record {
     private int id;
+    private String date;
     private String type;
     private double amount;
     private String notes;
@@ -50,5 +54,16 @@ public class Record {
                 ", amount=" + amount +
                 ", notes='" + notes + '\'' +
                 '}';
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("date", date);
+        result.put("type", type);
+        result.put("amount", amount);
+        result.put("notes", notes);
+
+        return result;
     }
 }

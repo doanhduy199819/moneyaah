@@ -62,7 +62,6 @@ public class WalletFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_wallet, container, false);
     }
 
@@ -90,20 +89,24 @@ public class WalletFragment extends Fragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Record Record = dataSnapshot.getValue(Record.class);
             }
+
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
                 Record newRecord = dataSnapshot.getValue(Record.class);
                 String RecordKey = dataSnapshot.getKey();
             }
+
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 String RecordKey = dataSnapshot.getKey();
             }
+
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
                 Record movedRecord = dataSnapshot.getValue(Record.class);
                 String RecordKey = dataSnapshot.getKey();
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getActivity(), "Failed to load Records.",
