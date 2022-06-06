@@ -3,6 +3,7 @@ package com.example.moneyaah;
 import java.util.Date;
 
 public class Record implements Comparable<Record>{
+    // Some hints about push to main
 
     public static final int INCOME = 0;
     public static final int EXPENSE = 1;

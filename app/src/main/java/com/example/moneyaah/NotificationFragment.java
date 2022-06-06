@@ -72,7 +72,6 @@ public class NotificationFragment extends Fragment {
         mListView = view.findViewById(R.id.list_notification);
         ArrayList<Notification> notiArray = new ArrayList<Notification>();
 
-
         // Fake data
         for (int i=0; i<3; ++i) {
             String title = "Notification " + i;
