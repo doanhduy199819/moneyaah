@@ -1,5 +1,6 @@
 package com.example.moneyaah;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +68,30 @@ public class StatisticsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistics, container, false);
+        View view = inflater.inflate(R.layout.fragment_statistics, container, false);
+        PieChart pieChart = (PieChart) view.findViewById(R.id.pie_chart);
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+
+        for(int i=1; i<6; i++){
+            float value = (float) (i * 10.0);
+
+
+            PieEntry pieEntry = new PieEntry(i, "value" + i);
+
+            pieEntries.add(pieEntry);
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries, "ABC");
+        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        pieDataSet.setDrawValues(false);
+
+        pieChart.setData(new PieData(pieDataSet));
+
+        pieChart.animateXY(1500, 1500);
+        pieChart.getDescription().setText("Detailed spending statistics");
+        pieChart.getDescription().setTextColor(Color.BLUE);
+
+        return view;
     }
 }
