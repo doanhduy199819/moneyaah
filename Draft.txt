@@ -1,0 +1,1 @@
+This is draft file to test 'git pull'
