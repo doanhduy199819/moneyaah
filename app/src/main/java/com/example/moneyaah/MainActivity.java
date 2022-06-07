@@ -1,3 +1,20 @@
+//<<<<<<< HEAD
+////package com.example.moneyaah;
+////
+////import androidx.appcompat.app.AppCompatActivity;
+////
+////import android.os.Bundle;
+////
+////public class MainActivity extends AppCompatActivity {
+////
+////    @Override
+////    protected void onCreate(Bundle savedInstanceState) {
+////        super.onCreate(savedInstanceState);
+////        getSupportActionBar().hide();
+////        setContentView(R.layout.activity_welcome_screen);
+////    }
+////}
+//=======
 package com.example.moneyaah;
 
 import androidx.annotation.NonNull;
@@ -10,6 +27,13 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.moneyaah.NotificationFragment;
+import com.example.moneyaah.ProfileFragment;
+import com.example.moneyaah.R;
+import com.example.moneyaah.Record;
+import com.example.moneyaah.RecordData;
+import com.example.moneyaah.StatisticsFragment;
+import com.example.moneyaah.WalletFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -89,3 +113,4 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 }
+//>>>>>>> c7a3bd8e9df7a0ade5c51b23a04bace53636fd0d

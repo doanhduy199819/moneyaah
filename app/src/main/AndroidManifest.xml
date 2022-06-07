@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.moneyaah">
 
+<<<<<<< HEAD
+    <uses-permission android:name="android.permission.INTERNET" />
+
+=======
+>>>>>>> c7a3bd8e9df7a0ade5c51b23a04bace53636fd0d
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +15,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
+<<<<<<< HEAD
+            android:name=".screens.LaunchScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.SignUpScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.SignInScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.WelcomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.HomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.NoteScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.StatisticScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+=======
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
@@ -17,6 +47,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+>>>>>>> c7a3bd8e9df7a0ade5c51b23a04bace53636fd0d
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

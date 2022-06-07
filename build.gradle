@@ -3,10 +3,17 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+<<<<<<< HEAD
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4"
+=======
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"
         classpath 'com.google.gms:google-services:4.3.10'
+>>>>>>> c7a3bd8e9df7a0ade5c51b23a04bace53636fd0d
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
