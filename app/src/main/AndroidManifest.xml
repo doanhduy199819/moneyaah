@@ -20,6 +20,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".screens.LaunchScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.SignUpScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.SignInScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.WelcomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.HomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.NoteScreen"
+            android:exported="false" />
+        <activity
+            android:name=".screens.StatisticScreen"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>
