@@ -3,20 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/drawable/my_button_bg.xml" value="0.26614583333333336" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/drawable/save_button.xml" value="0.2064814814814815" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_home_screen.xml" value="0.2" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_launch_screen.xml" value="0.21240942028985507" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_main.xml" value="0.21240942028985507" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_note.xml" value="0.264" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_sign_in_screen.xml" value="0.4" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_sign_up_screen.xml" value="0.4" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_statistic_screen.xml" value="0.1296875" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/activity_welcome_screen.xml" value="0.2" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/fragment_expense_fragent.xml" value="0.25" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Code/Moneyaah/app/src/main/res/layout/fragment_income.xml" value="0.25" />
-=======
         <entry key="app/src/main/res/drawable-anydpi/add_icon.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/drawable-anydpi/edit_icon.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.21458333333333332" />
@@ -36,7 +22,6 @@
         <entry key="app/src/main/res/layout/list_item_record.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_record_details.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.15648148148148147" />
->>>>>>> c7a3bd8e9df7a0ade5c51b23a04bace53636fd0d
       </map>
     </option>
   </component>
@@ -46,8 +31,6 @@
   <component name="ProjectType">
     <option name="id" value="Android" />
   </component>
-<<<<<<< HEAD
-=======
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
@@ -55,5 +38,4 @@
       </ProjectState>
     </option>
   </component>
->>>>>>> c7a3bd8e9df7a0ade5c51b23a04bace53636fd0d
 </project>

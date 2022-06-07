@@ -7,13 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<<<<<<< HEAD
-    <color name="primary_color">#15B946</color>
-    <color name="text">#1AAE44</color>
-    <color name="border_button">#DA1111</color>
-=======
     <color name="backgroundColor">#1AAE44</color>
     <color name="incomeColor">#1AAE44</color>
     <color name="expenseColor">#C62A42</color>
->>>>>>> c7a3bd8e9df7a0ade5c51b23a04bace53636fd0d
 </resources>
