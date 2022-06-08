@@ -55,8 +55,6 @@ public class WalletFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        tvAmount = (TextView) getView().findViewById(R.id.tvAmount);
-        getAmount();
     }
 
     @Override

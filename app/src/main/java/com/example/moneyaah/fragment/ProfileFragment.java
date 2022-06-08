@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moneyaah.Constants;
+import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -87,8 +88,14 @@ public class ProfileFragment extends Fragment {
 
         setUpUI(view);
         setUpEvent(view);
+        handleUsername();
 
         return view;
+    }
+
+    private void handleUsername() {
+        String username = Helper.getUsername(getActivity());
+        editEmail.setText(username);
     }
 
     private void setUpUI(View mainView) {
@@ -112,52 +119,52 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 emailContent.setVisibility(View.INVISIBLE);
                 editEmail.setVisibility(View.VISIBLE);
-
-                editEmail.setText(emailContent.getText());
+                editEmail.setText(Helper.getUsername(getActivity()));
+                emailContent.setText(Helper.getUsername(getActivity()));
             }
         });
 
         // Update
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        updateButton.setOnClickListener(v -> {
 
-                // Information
-                emailContent.setText(editEmail.getText());
-                emailContent.setVisibility(View.VISIBLE);
-                editEmail.setVisibility(View.INVISIBLE);
+            // Information
+            emailContent.setText(editEmail.getText());
+            emailContent.setVisibility(View.VISIBLE);
+            editEmail.setVisibility(View.INVISIBLE);
+            String email = editEmail.getText().toString();
+            // Password
+            String password = "1234";
+            String oldPass = editOldPassword.getText().toString();
+            String newPass = editNewPassword.getText().toString();
+            String confirmPass = editConfirmPassword.getText().toString();
 
-                // Password
-                String password = "1234";
-                String oldPass = editOldPassword.getText().toString();
-                String newPass = editNewPassword.getText().toString();
-                String confirmPass = editConfirmPassword.getText().toString();
-
-                if (!oldPass.equals(password)) {
-                    // Wrong password
-                }
-                else if (!newPass.equals(confirmPass)) {
-                    editNewPassword.setText("");
-                    editConfirmPassword.setText("");
-                }
-                else {
-                    // Change user password
-                    editOldPassword.setText("");
-                    editNewPassword.setText("");
-                    editConfirmPassword.setText("");
-                }
+            if (true) {
+                // Wrong password
+            } else if (!newPass.equals(confirmPass)) {
+                editNewPassword.setText("");
+                editConfirmPassword.setText("");
+            } else {
+                // Change user password
+                updatePassword(editNewPassword.getText().toString());
+                editOldPassword.setText("");
+                editNewPassword.setText("");
+                editConfirmPassword.setText("");
+            }
+            if (!email.equals("")) {
+                updateEmail(email);
             }
         });
     }
 
     public boolean updateEmail(String email) {
+        Log.d("12312", email);
         final boolean[] flag = {false};
-        mUser.updateEmail("email")
+        mUser.updateEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(Constants.TAG, "User email address updated.");
+                            Helper.getUsername(getActivity());
                             flag[0] = true;
                         }
                     }
@@ -174,6 +181,7 @@ public class ProfileFragment extends Fragment {
                         if (task.isSuccessful()) {
                             Log.d(Constants.TAG, "User password updated.");
                             flag[0] = true;
+                            Toast.makeText(getActivity(), "Password Changed", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

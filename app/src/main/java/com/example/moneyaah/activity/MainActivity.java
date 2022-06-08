@@ -1,10 +1,5 @@
 package com.example.moneyaah.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,20 +7,24 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.moneyaah.Helper;
+import com.example.moneyaah.R;
 import com.example.moneyaah.Record;
 import com.example.moneyaah.RecordData;
 import com.example.moneyaah.StatisticsFragment;
 import com.example.moneyaah.fragment.NotificationFragment;
 import com.example.moneyaah.fragment.ProfileFragment;
-import com.example.moneyaah.R;
 import com.example.moneyaah.fragment.WalletFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -47,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         if (mUser != null) {
             String user = mUser.getEmail();
             Helper.saveUser(this, user);
+            Log.d("Usernaem", Helper.getUsername(this));
         } else {
             Helper.navigate(MainActivity.this, LoginActivity.class, this);
         }
