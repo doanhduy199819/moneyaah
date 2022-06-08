@@ -7,21 +7,31 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.moneyaah.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LaunchScreen extends AppCompatActivity {
+
+    FirebaseUser mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance().getCurrentUser();
         setContentView(R.layout.activity_launch_screen);
         getSupportActionBar().hide();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent welcomeScreen = new Intent(LaunchScreen.this, WelcomeScreen.class);
-                startActivity(welcomeScreen);
-                finish();
-            }
-        }, 1000);
+        Handler handler = new Handler();
+        handler.postDelayed(this::nextActivity, 1000);
+    }
+
+    public void nextActivity() {
+        Intent intent;
+        if (mAuth == null) {
+            intent = new Intent(LaunchScreen.this, WelcomeScreen.class);
+        } else {
+            intent = new Intent(LaunchScreen.this, HomeScreen.class);
+        }
+        startActivity(intent);
+        finish();
     }
 }

@@ -10,24 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
-            android:name=".activity.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.IntroActivity"
-            android:exported="false"
-            android:label="@string/title_activity_splash"
-            android:theme="@style/Theme.Moneyaah.NoActionBar" />
-        <activity
             android:name=".activity.MainActivity"
             android:exported="false">
-
         </activity>
-
         <activity
             android:name=".screens.LaunchScreen"
             android:exported="false" />
@@ -48,8 +33,7 @@
             android:exported="false" />
         <activity
             android:name=".screens.StatisticScreen"
-            android:exported="false">
-        </activity>
+            android:exported="false"/>
     </application>
 
 </manifest>

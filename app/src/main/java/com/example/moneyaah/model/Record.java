@@ -1,7 +1,5 @@
 package com.example.moneyaah.model;
 
-import androidx.annotation.NonNull;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,11 +10,15 @@ public class Record {
     private double amount;
     private String notes;
 
-    public Record(int id, String type, double amount, String notes) {
+    public Record() {
+    }
+
+    public Record(int id, String date, String type, double amount, String notes) {
         this.id = id;
         this.amount = amount;
         this.type = type;
         this.notes = notes;
+        this.date = date;
     }
 
     public int getId() {
@@ -31,6 +33,22 @@ public class Record {
         return notes;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -41,10 +59,6 @@ public class Record {
 
     public void setAmount(double amount) {
         this.amount = amount;
-    }
-
-    public double getAmount() {
-        return amount;
     }
 
     @Override
