@@ -13,4 +13,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="password_not_match">Your password does not match, please try again</string>
     <string name="invalid_password">Wrong password, please try again</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_up_google">Sign up with Google</string>
 </resources>
