@@ -15,4 +15,7 @@
     <string name="invalid_password">Wrong password, please try again</string>
     <string name="sign_in_google">Sign in with Google</string>
     <string name="sign_up_google">Sign up with Google</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

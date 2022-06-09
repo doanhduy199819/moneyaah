@@ -24,6 +24,9 @@ public class RecordData {
         }
         return globInstance;
     }
+    public List<Record> getAllRecords() {
+        return mRecList;
+    }
 
     public List<Record> getList(int day, int month) {
         List<Record> res = new ArrayList<>();

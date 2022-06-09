@@ -2,11 +2,11 @@ package com.example.moneyaah;
 
 public class Category {
 
-    private static final String[] incomeNames = {
+    public static final String[] incomeNames = {
             "Salary",
             "Tips"
     };
-    private static final String[] expenseNames = {
+    public static final String[] expenseNames = {
             "Food",
             "Coffee",
             "Hang out",

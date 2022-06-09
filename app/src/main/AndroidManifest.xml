@@ -10,12 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".AddCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryActivity"
             android:exported="false">
         </activity>
         <activity
             android:name=".screens.LaunchScreen"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".screens.SignUpScreen"
             android:exported="false" />
@@ -33,7 +41,8 @@
             android:exported="false" />
         <activity
             android:name=".screens.StatisticScreen"
-            android:exported="false"/>
+            android:exported="false" />
+
     </application>
 
 </manifest>

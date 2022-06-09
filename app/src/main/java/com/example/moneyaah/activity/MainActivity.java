@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             Helper.saveUser(this, user);
             Log.d("Usernaem", Helper.getUsername(this));
         } else {
-            Helper.navigate(MainActivity.this, LoginActivity.class, this);
         }
 
         RecordData r = RecordData.getInstance();
@@ -116,8 +115,5 @@ public class MainActivity extends AppCompatActivity {
                 Helper.logout();
             }
         }, 200);
-
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
     }
 }

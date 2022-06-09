@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -35,6 +36,7 @@ public class SignInScreen extends AppCompatActivity {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private ImageButton btnSignIn;
     private EditText edtEmail;
+    private EditText edtPassword;
     private ImageView imgTick;
 
     @Override
@@ -48,13 +50,12 @@ public class SignInScreen extends AppCompatActivity {
         googleSignInButton = (GoogleSignInButton) findViewById(R.id.sign_in_button);
         btnSignIn = findViewById(R.id.btn_sign_in);
         edtEmail = findViewById(R.id.edt_email);
+        edtPassword = findViewById(R.id.edt_password);
         imgTick = findViewById(R.id.img_tick);
 
         // Navigating to Note Screen to test
         btnSignIn.setOnClickListener(v -> {
-            handleSignIn();
-            Intent intent = new Intent(SignInScreen.this, HomeScreen.class);
-            startActivity(intent);
+            handleSignIn(edtEmail.getText().toString(), edtPassword.getText().toString());
         });
 
 
@@ -99,6 +100,8 @@ public class SignInScreen extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
+                        String username = user.getEmail();
+                        Helper.saveUser(this, username.split("@")[0]);
                         Intent intent = new Intent(SignInScreen.this, HomeScreen.class);
                         startActivity(intent);
                     } else {
