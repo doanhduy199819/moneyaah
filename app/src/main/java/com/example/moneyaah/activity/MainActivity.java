@@ -76,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void getUserCurrentAmount() {
         String username = Helper.getUsername(this);
-        DatabaseReference db = Helper.getDataRef("User/admin12345/Amount");
+        DatabaseReference db = Helper.getDataRef("User/"+username+"/Amount");
         ValueEventListener amountListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 amount = dataSnapshot.getValue(Double.class);
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getListRecord() {
         String username = Helper.getUsername(this);
-        DatabaseReference recordDbRef = Helper.getDataRef("User/admin12345/Records");
+        DatabaseReference recordDbRef = Helper.getDataRef("User/" + username + "/Records");
         recordDbRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {

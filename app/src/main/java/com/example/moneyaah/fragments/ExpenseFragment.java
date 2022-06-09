@@ -100,8 +100,8 @@ public class ExpenseFragment extends Fragment {
         Record newRecord = new Record(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(edtMoney.getText().toString()), dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), records.size() + 1);
         Map<String, Object> recordUpdate = newRecord.toMap();
         recordUpdate.put(String.valueOf(records.size() + 1), newRecord);
-        Helper.updateObject("User/admin12345/Records/", newRecord);
+        Helper.updateObject("User/"+Helper.getUsername(getActivity())+"/Records/", newRecord);
         recordAmount = amount - recordAmount;
-        Helper.updateNumber("User/admin12345/Amount", recordAmount);
+        Helper.updateNumber("User/"+Helper.getUsername(getActivity())+"/Amount", recordAmount);
     }
 }
