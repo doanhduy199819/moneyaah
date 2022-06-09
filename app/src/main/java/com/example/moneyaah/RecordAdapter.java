@@ -1,6 +1,7 @@
 package com.example.moneyaah;
 
 import android.content.Context;
+import android.view.ContentInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ public class RecordAdapter extends ArrayAdapter {
 
     // Danh sach tat ca records trong 1 thang (moi row = 1 ngay)
     List<List<Record>> mMonthRecordList;
+    String username;
 
     public RecordAdapter(@NonNull Context context, List<List<Record>> recordList) {
         super(context, R.layout.list_item_record, recordList);
         this.mMonthRecordList = recordList;
+        this.username = Helper.getUsername(context);
     }
 
     @NonNull
@@ -42,12 +45,12 @@ public class RecordAdapter extends ArrayAdapter {
 //        detailView.setVisibility(View.INVISIBLE);
 
         List<Record> oneDayList = mMonthRecordList.get(position);
-        if (oneDayList.size() == 0 ) return rowView;
+        if (oneDayList.size() == 0) return rowView;
         Record firstRec = oneDayList.get(0);
 
         // Set title label
         Calendar cal = Calendar.getInstance();
-        cal.setTime(firstRec.getDate());
+//        cal.setTime(firstRec.getDate());
         String dayNames[] = new DateFormatSymbols().getWeekdays();
         String dayWeek = dayNames[cal.get(Calendar.DAY_OF_WEEK)]; // dayWeek[0] = ""
         String day = String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
@@ -61,8 +64,8 @@ public class RecordAdapter extends ArrayAdapter {
         // list view
 //        RecordDetailAdapter detailAdapter = new RecordDetailAdapter(getContext(), oneDayList);
 //        detailView.setAdapter(detailAdapter);
-        LinearLayout detailContainer = (LinearLayout)rowView.findViewById(R.id.details_container);
-        for (int i=0; i<oneDayList.size(); i++) {
+        LinearLayout detailContainer = (LinearLayout) rowView.findViewById(R.id.details_container);
+        for (int i = 0; i < oneDayList.size(); i++) {
             View detailRow = LayoutInflater.from(getContext()).inflate(R.layout.list_item_record_details, parent, false);
             TextView categoryLabel = detailRow.findViewById(R.id.label_category);
             TextView moneyIncomeLabel = detailRow.findViewById(R.id.label_money_income);
@@ -75,8 +78,7 @@ public class RecordAdapter extends ArrayAdapter {
                 moneyIncomeLabel.setTextColor(getContext().getResources().getColor(R.color.incomeColor));
                 moneyIncomeLabel.setText("$ " + money);
                 moneyExpenseLabel.setVisibility(View.INVISIBLE);
-            }
-            else {
+            } else {
                 moneyExpenseLabel.setTextColor(getContext().getResources().getColor(R.color.expenseColor));
                 moneyExpenseLabel.setText("$ " + money);
                 moneyIncomeLabel.setVisibility(View.INVISIBLE);
@@ -93,17 +95,18 @@ public class RecordAdapter extends ArrayAdapter {
     private double getTotalIncome(int index) {
         double sum = 0;
         List<Record> dayRecords = mMonthRecordList.get(index);
-        for (int i=0; i< dayRecords.size(); i++) {
+        for (int i = 0; i < dayRecords.size(); i++) {
             Record r = dayRecords.get(i);
             if (r.getType() == Record.INCOME)
                 sum += r.getMoney();
         }
         return sum;
     }
+
     private double getTotalExpense(int index) {
         double sum = 0;
         List<Record> dayRecords = mMonthRecordList.get(index);
-        for (int i=0; i< dayRecords.size(); i++) {
+        for (int i = 0; i < dayRecords.size(); i++) {
             Record r = dayRecords.get(i);
             if (r.getType() == Record.EXPENSE)
                 sum += r.getMoney();

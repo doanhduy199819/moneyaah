@@ -11,6 +11,11 @@
         android:title="Statistics" />
 
     <item
+        android:id="@+id/goal"
+        android:icon="@drawable/notification_icon"
+        android:title="Goal" />
+
+    <item
         android:id="@+id/notification"
         android:icon="@drawable/notification_icon"
         android:title="Notifications" />

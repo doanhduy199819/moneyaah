@@ -33,7 +33,7 @@ public class RecordData {
         for (int i=0; i<mRecList.size(); i++) {
             Record rec = mRecList.get(i);
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(rec.getDate());
+//            calendar.setTime(rec.getDate());
             if (month == calendar.get(Calendar.MONTH)
             &&  day == calendar.get(Calendar.DAY_OF_MONTH)) {
                 res.add(rec);
@@ -55,7 +55,7 @@ public class RecordData {
         for (int i=0; i<mRecList.size(); i++) {
             Record rec = mRecList.get(i);
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(rec.getDate());
+//            calendar.setTime(rec.getDate());
             if (month == calendar.get(Calendar.MONTH)) {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 res.get(day).add(rec);
@@ -77,21 +77,21 @@ public class RecordData {
 
     private void fakeData() {
 
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 10, Category.INCOME.getString(0), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 11, Category.INCOME.getString(0), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 12, Category.INCOME.getString(0), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 13, Category.INCOME.getString(0), "Nothing"));
-
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.INCOME, 14, Category.INCOME.getString(0), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(0), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(0), "Nothing"));
-
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.INCOME, 14, Category.INCOME.getString(0), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(0), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(0), "Nothing"));
-
-        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 23).getTime(), Record.INCOME, 14, Category.INCOME.getString(Category.INCOME.TIPS), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 24).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(Category.EXPENSE.DATING), "Nothing"));
-        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 25).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(Category.EXPENSE.FOOD), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 10, Category.INCOME.getString(0), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 11, Category.INCOME.getString(0), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 12, Category.INCOME.getString(0), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 13, Category.INCOME.getString(0), "Nothing"));
+//
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.INCOME, 14, Category.INCOME.getString(0), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(0), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(0), "Nothing"));
+//
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.INCOME, 14, Category.INCOME.getString(0), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(0), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(0), "Nothing"));
+//
+//        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 23).getTime(), Record.INCOME, 14, Category.INCOME.getString(Category.INCOME.TIPS), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 24).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(Category.EXPENSE.DATING), "Nothing"));
+//        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 25).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(Category.EXPENSE.FOOD), "Nothing"));
     }
 }

@@ -179,7 +179,6 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(Constants.TAG, "User password updated.");
                             flag[0] = true;
                             Toast.makeText(getActivity(), "Password Changed", Toast.LENGTH_LONG).show();
                         }

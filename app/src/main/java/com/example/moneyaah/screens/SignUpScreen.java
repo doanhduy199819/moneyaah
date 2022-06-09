@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -43,7 +45,7 @@ public class SignUpScreen extends AppCompatActivity {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private EditText edtReEnterPassword;
     private EditText edtpassword;
-    private Button signupButton;
+    private ImageButton signupButton;
     String passwordStr;
     String reEnterPasswordStr;
 
@@ -66,7 +68,8 @@ public class SignUpScreen extends AppCompatActivity {
         edtEmail = findViewById(R.id.edt_email);
         edtReEnterPassword = findViewById(R.id.edt_repassword);
         edtpassword = findViewById(R.id.edt_password);
-        signupButton = findViewById(R.id.sign_up_button);
+        signupButton = findViewById(R.id.btn_sign_up);
+        mAuth = FirebaseAuth.getInstance();
         initListener();
 
     }
@@ -184,6 +187,11 @@ public class SignUpScreen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                String temp = user.getEmail().split("@")[0];
+                                Helper.saveUser(SignUpScreen.this, temp);
+                                Helper.updateNumber("User/" + Helper.getUsername(SignUpScreen.this) + "/Amount", (double) 0);
+                            }
                             updateUI(user);
                         } else {
                             Toast.makeText(SignUpScreen.this, "Can't create new user.",

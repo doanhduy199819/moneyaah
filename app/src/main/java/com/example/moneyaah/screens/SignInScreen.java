@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
+import com.example.moneyaah.activity.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -100,9 +101,9 @@ public class SignInScreen extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-                        String username = user.getEmail();
-                        Helper.saveUser(this, username.split("@")[0]);
-                        Intent intent = new Intent(SignInScreen.this, HomeScreen.class);
+                        Helper.saveUser(this, user.getEmail().split("@")[0]);
+                        String username = Helper.getUsername(this);
+                        Intent intent = new Intent(SignInScreen.this, MainActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(SignInScreen.this, "Authentication failed.",

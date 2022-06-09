@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.moneyaah.R;
+import com.example.moneyaah.activity.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -29,7 +30,7 @@ public class LaunchScreen extends AppCompatActivity {
         if (mAuth == null) {
             intent = new Intent(LaunchScreen.this, WelcomeScreen.class);
         } else {
-            intent = new Intent(LaunchScreen.this, HomeScreen.class);
+            intent = new Intent(LaunchScreen.this, MainActivity.class);
         }
         startActivity(intent);
         finish();

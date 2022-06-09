@@ -1,6 +1,6 @@
 package com.example.moneyaah.activity;
 
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -8,10 +8,12 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.moneyaah.GoalFragment;
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
 import com.example.moneyaah.Record;
@@ -21,15 +23,24 @@ import com.example.moneyaah.fragment.NotificationFragment;
 import com.example.moneyaah.fragment.ProfileFragment;
 import com.example.moneyaah.fragment.WalletFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static double amount;
+    public static ArrayList<Record> records = new ArrayList<>();
     BottomNavigationView mBottomNavigationView;
 
     Fragment walletFragment;
@@ -37,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment profileFragment;
     FirebaseUser mUser;
     Fragment statisticsFragment;
+    Fragment goalFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Usernaem", Helper.getUsername(this));
         } else {
         }
-
+        getListRecord();
+        getUserCurrentAmount();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            records.forEach(record -> Log.d("RECORD", record.toString()));
+        }
         RecordData r = RecordData.getInstance();
 //        List<Record> todayList = r.getTodayList();
         List<Record> dayTwo = r.getList(2, Calendar.JUNE);
@@ -58,6 +74,76 @@ public class MainActivity extends AppCompatActivity {
         setUpUI();
     }
 
+    private void getUserCurrentAmount() {
+        String username = Helper.getUsername(this);
+        DatabaseReference db = Helper.getDataRef("User/admin12345/Amount");
+        ValueEventListener amountListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                amount = dataSnapshot.getValue(Double.class);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        db.addValueEventListener(amountListener);
+    }
+
+    private void getListRecord() {
+        String username = Helper.getUsername(this);
+        DatabaseReference recordDbRef = Helper.getDataRef("User/admin12345/Records");
+        recordDbRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Record record = snapshot.getValue(Record.class);
+                records.add(record);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Record record = snapshot.getValue(Record.class);
+                int index = -1;
+                for (Record record1 : records) {
+                    if (record.getId() == (record1.getId())) {
+                        index = records.indexOf(record1);
+                    }
+                }
+                records.set(index, record);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                Record record = snapshot.getValue(Record.class);
+                records.remove(record);
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Failed to load comments.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        recordDbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                records.clear();
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Record record = postSnapshot.getValue(Record.class);
+                    records.add(record);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+
     private void setUpUI() {
 
         // Initialize Fragments
@@ -65,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
         notiFragment = new NotificationFragment();
         profileFragment = new ProfileFragment();
         statisticsFragment = new StatisticsFragment();
+        goalFragment = new GoalFragment();
 
         // Set wallet by default
         loadFragment(walletFragment);
@@ -81,6 +168,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.statistics:
                         loadFragment(statisticsFragment);
+                        return true;
+                    case R.id.goal:
+                        loadFragment(goalFragment);
                         return true;
                     case R.id.notification:
                         loadFragment(notiFragment);

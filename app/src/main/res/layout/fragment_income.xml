@@ -62,10 +62,12 @@
             android:text="Số tiền: "
             android:textSize="20sp"
             android:layout_marginRight="5dp"/>
+
         <EditText
+            android:id="@+id/edt_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:inputType="number" />
     </LinearLayout>
 
     <LinearLayout
@@ -80,9 +82,11 @@
             android:text="Ghi chú: "
             android:textSize="20sp"
             android:layout_marginRight="5dp"/>
+
         <EditText
+            android:id="@+id/edt_desc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <Button

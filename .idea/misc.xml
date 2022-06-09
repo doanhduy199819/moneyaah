@@ -3,12 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_home_screen.xml" value="0.20208333333333334" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_launch_screen.xml" value="0.20208333333333334" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_login.xml" value="0.20208333333333334" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_main.xml" value="0.20208333333333334" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_note.xml" value="0.33469202898550726" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_sign_in_screen.xml" value="0.33" />
-        <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_sign_up_screen.xml" value="0.20208333333333334" />
+        <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_sign_up_screen.xml" value="0.5" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_splash.xml" value="0.20208333333333334" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_statistic_screen.xml" value="0.33469202898550726" />
         <entry key="..\:/CDIO/moneyaah/app/src/main/res/layout/activity_wallet.xml" value="0.20208333333333334" />
