@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment notiFragment;
     Fragment profileFragment;
     Fragment statisticsFragment;
+    Fragment goalFragment;
 
 
     @Override
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         notiFragment = new NotificationFragment();
         profileFragment = new ProfileFragment();
         statisticsFragment = new StatisticsFragment();
+        goalFragment = new GoalFragment();
 
         // Set wallet by default
         loadFragment(walletFragment);
@@ -63,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.statistics:
                         loadFragment(statisticsFragment);
+                        return true;
+                    case R.id.goal:
+                        loadFragment(goalFragment);
                         return true;
                     case R.id.notification:
                         loadFragment(notiFragment);

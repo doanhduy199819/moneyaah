@@ -25,7 +25,7 @@
         <entry key="app/src/main/res/layout/activity_welcome_screen.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_expense_fragent.xml" value="0.11730072463768115" />
-        <entry key="app/src/main/res/layout/fragment_goal.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_goal.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_history_wallet.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/fragment_income.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.10207700101317123" />
@@ -52,7 +52,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.1" />
+        <option name="scale" value="0.335" />
       </ProjectState>
     </option>
   </component>
