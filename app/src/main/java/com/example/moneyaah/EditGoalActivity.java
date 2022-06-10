@@ -19,6 +19,11 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.moneyaah.classes.Goal;
+import com.example.moneyaah.classes.UserDData;
+
+import java.util.Calendar;
+
 public class EditGoalActivity extends AppCompatActivity {
 
     private Switch mTrackExpenseSwitch;
@@ -67,10 +72,13 @@ public class EditGoalActivity extends AppCompatActivity {
         mTrackExpenseSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
+                if (isChecked) {
                     mExpenseDetail.setVisibility(View.VISIBLE);
-                else
+                }
+                else {
                     mExpenseDetail.setVisibility(View.GONE);
+                    expenseEdit.setText("");
+                }
             }
         });
 
@@ -80,8 +88,10 @@ public class EditGoalActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked)
                     mTotalDetail.setVisibility(View.VISIBLE);
-                else
+                else {
+                    totalEdit.setText("");
                     mTotalDetail.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -89,27 +99,30 @@ public class EditGoalActivity extends AppCompatActivity {
         expenseRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbutton_expense_week:
-                        break;
-                    case R.id.rbutton_expense_month:
-                        break;
-                    default:
-                        break;
-                }
+//                double money = 0;
+//                try {
+//                    money = Double.parseDouble(expenseEdit.getText().toString());
+//                } catch (Exception e) {
+//                    Toast.makeText(EditGoalActivity.this, "money null", Toast.LENGTH_SHORT).show();
+//                }
+//                Goal goal = new Goal(0, money, 0);
+//                switch (checkedId) {
+//                    case R.id.rbutton_expense_week:
+//                        goal.setDuration(7);
+//                        UserDData.get().setExpenseGoal(goal);
+//                        break;
+//                    case R.id.rbutton_expense_month:
+//                        goal.setDuration(30);
+//                        UserDData.get().setExpenseGoal(goal);
+//                        break;
+//                    default:
+//                        break;
+//                }
             }
         });
         totalRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rbutton_total_week:
-                        break;
-                    case R.id.rbutton_total_month:
-                        break;
-                    default:
-                        break;
-                }
             }
         });
 
@@ -117,20 +130,45 @@ public class EditGoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Set goal here
-                double expenseValue, totalValue;
-                try {
-                    expenseValue = Double.parseDouble(expenseEdit.getText().toString());
-                    totalValue = Double.parseDouble(totalEdit.getText().toString());
+                double expenseValue = 0, totalValue = 0;
+                if (expenseEdit.getText().toString().length() != 0) {
+                    try {
+                        expenseValue = Double.parseDouble(expenseEdit.getText().toString());
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(EditGoalActivity.this, "Invalid Text", Toast.LENGTH_SHORT).show();
+                    }
+                    Goal goal = new Goal(0, expenseValue, 0);
+                    if (expenseRadioGroup.getCheckedRadioButtonId() == R.id.rbutton_expense_week)
+                        goal.setDuration(7);
+                    else {
+                        goal.setDuration(30);
+                    }
+                    UserDData.get().setExpenseGoal(goal);
                 }
-                catch (Exception e) {
-                    Toast.makeText(EditGoalActivity.this, "Invalid Text", Toast.LENGTH_SHORT).show();
+                if (totalEdit.getText().toString().length() != 0) {
+                    try {
+                        totalValue = Double.parseDouble(totalEdit.getText().toString());
+                    }
+                    catch (Exception e) {
+                        Toast.makeText(EditGoalActivity.this, "Invalid Text", Toast.LENGTH_SHORT).show();
+                    }
+                    Goal goal = new Goal(1, totalValue, 0);
+                    if (totalRadioGroup.getCheckedRadioButtonId() == R.id.rbutton_total_week)
+                        goal.setDuration(7);
+                    else {
+                        goal.setDuration(30);
+                    }
+                    UserDData.get().setTotalGoal(goal);
                 }
+                Toast.makeText(EditGoalActivity.this, "Set Goal Successfully", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
     }

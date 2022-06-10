@@ -1,8 +1,7 @@
-package com.example.moneyaah;
+package com.example.moneyaah.classes;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -24,6 +23,7 @@ public class RecordData {
         }
         return globInstance;
     }
+
     public List<Record> getAllRecords() {
         return mRecList;
     }
@@ -74,6 +74,24 @@ public class RecordData {
         mRecList.add(rec);
         Collections.sort(mRecList);
     }
+
+    public double totalExpense() {
+        double sum = 0;
+        for (Record r: mRecList) {
+            sum += r.type == Record.EXPENSE ? r.getMoney(): 0;
+        }
+        return sum;
+    }
+    public double totalExpense(Date startDate, Date endDate) {
+        double sum = 0;
+        for (Record r: mRecList) {
+            if (r.getDate().compareTo(startDate) >= 0
+            &&  r.getDate().compareTo(endDate) <= 0)
+            sum += r.type == Record.EXPENSE ? r.getMoney(): 0;
+        }
+        return sum;
+    }
+
 
     private void fakeData() {
 
