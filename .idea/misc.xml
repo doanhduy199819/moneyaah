@@ -6,10 +6,12 @@
         <entry key="..\:/Nam_3/Ki_2/CDIO2/Final_CDIO/moneyaah/app/src/main/res/layout/fragment_statistics.xml" value="0.1598731884057971" />
         <entry key="app/src/main/res/drawable-anydpi/add_icon.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/drawable-anydpi/edit_icon.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/drawable/round_button.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.21458333333333332" />
         <entry key="app/src/main/res/layout/actionbar_custom.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_add_category.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_edit_goal.xml" value="0.3533935500329441" />
         <entry key="app/src/main/res/layout/activity_home_screen.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/activity_launch_screen.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.11730072463768115" />
@@ -25,7 +27,7 @@
         <entry key="app/src/main/res/layout/activity_welcome_screen.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_expense_fragent.xml" value="0.11730072463768115" />
-        <entry key="app/src/main/res/layout/fragment_goal.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_goal.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_history_wallet.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/fragment_income.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.10207700101317123" />
@@ -39,6 +41,7 @@
         <entry key="app/src/main/res/layout/list_item_noti.xml" value="0.1716485507246377" />
         <entry key="app/src/main/res/layout/list_item_record.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_record_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/rounded_button.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.15648148148148147" />
       </map>
     </option>

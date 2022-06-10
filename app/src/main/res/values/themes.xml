@@ -19,4 +19,19 @@
     </style>
     <style name="Theme.Moneyaah.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.Moneyaah.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.SwitchTheme" parent="Theme.AppCompat.Light">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="colorPrimary">@android:color/darker_gray</item>
+
+        <!-- colorPrimaryDark is used for the status bar -->
+        <item name="colorPrimaryDark">@android:color/darker_gray</item>
+
+        <!-- colorAccent is used as the default value for colorControlActivated,
+             which is used to tint widgets -->
+        <item name="colorAccent">@color/incomeColor</item>
+
+        <!-- You can also set colorControlNormal, colorControlActivated
+             colorControlHighlight, and colorSwitchThumbNormal. -->
+        <item name="colorControlActivated">@color/incomeColor</item>
+    </style>
 </resources>
