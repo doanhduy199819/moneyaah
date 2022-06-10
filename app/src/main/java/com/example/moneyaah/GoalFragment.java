@@ -1,28 +1,47 @@
 package com.example.moneyaah;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link GoalFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GoalFragment extends Fragment {
+public class GoalFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final int REQUEST_EDIT = 0;
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RelativeLayout mExpenseLayout, mTotalLayout;
+    private TextView mExpenseValue, mYourExpenseValue, mExpenseDuration;
+    private TextView mTotalValue, mYourTotalValue, mTotalDuration;
+    private Button mEditButton;
+
+
 
     public GoalFragment() {
         // Required empty public constructor
@@ -59,6 +78,44 @@ public class GoalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goal, container, false);
+        View view = inflater.inflate(R.layout.fragment_goal, container, false);
+
+        setUpUI(view);
+        setUpEvent(view);
+        return view;
+    }
+
+    private void setUpUI(View view) {
+        mExpenseLayout = view.findViewById(R.id.expense_track_show);
+        mExpenseValue = view.findViewById(R.id.expense_value);
+        mYourExpenseValue = view.findViewById(R.id.your_expense_value);
+        mExpenseDuration = view.findViewById(R.id.expense_duration_value);
+
+        mTotalLayout = view.findViewById(R.id.total_track_show);
+        mTotalValue = view.findViewById(R.id.total_value);
+        mYourTotalValue = view.findViewById(R.id.your_total_value);
+        mTotalDuration = view.findViewById(R.id.total_duration_value);
+
+        mEditButton = view.findViewById(R.id.button_edit);
+
+    }
+
+    private void setUpEvent(View view) {
+        mEditButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), EditGoalActivity.class);
+        startActivityForResult(intent, REQUEST_EDIT);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_EDIT) {
+            // Do something here
+        }
     }
 }
