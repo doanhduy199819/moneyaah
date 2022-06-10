@@ -1,4 +1,4 @@
-package com.example.moneyaah;
+package com.example.moneyaah.classes;
 
 import java.util.ArrayList;
 import java.util.List;

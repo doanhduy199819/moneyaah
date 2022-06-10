@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -74,7 +75,7 @@ public class HistoryWalletFragment extends Fragment {
 
         mViewPager = view.findViewById(R.id.history_pager);
         FragmentManager fm = getChildFragmentManager();
-        mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
+        mViewPager.setAdapter(new FragmentPagerAdapter(fm) {
             @Override
             public int getCount() {
                 return 12;  // 12 thang

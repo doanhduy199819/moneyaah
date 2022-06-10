@@ -1,25 +1,26 @@
 package com.example.moneyaah;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.moneyaah.classes.Goal;
+import com.example.moneyaah.classes.RecordData;
+import com.example.moneyaah.classes.UserDData;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,7 +82,7 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_goal, container, false);
 
         setUpUI(view);
-        setUpEvent(view);
+        setUpEvent();
         return view;
     }
 
@@ -96,12 +97,74 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
         mYourTotalValue = view.findViewById(R.id.your_total_value);
         mTotalDuration = view.findViewById(R.id.total_duration_value);
 
-        mEditButton = view.findViewById(R.id.button_edit);
+        mEditButton = view.findViewById(R.id.button_new_goal);
 
     }
 
-    private void setUpEvent(View view) {
+    private void setUpEvent() {
         mEditButton.setOnClickListener(this);
+        if (UserDData.get().getExpenseGoal() == null) {
+            mExpenseLayout.setVisibility(View.GONE);
+        } else {
+            mExpenseLayout.setVisibility(View.VISIBLE);
+            displayGoal(UserDData.get().getExpenseGoal());
+        }
+
+        if (UserDData.get().getTotalGoal() == null) {
+            mTotalLayout.setVisibility(View.GONE);
+        } else {
+            mTotalLayout.setVisibility(View.VISIBLE);
+            displayGoal(UserDData.get().getTotalGoal());
+        }
+    }
+
+    private void displayGoal(@NonNull Goal goal) {
+        TextView value, yourValue, duration;
+        if (goal.getType() == Goal.EXPENSE) {
+            value = mExpenseValue;
+            yourValue = mYourExpenseValue;
+            duration = mExpenseDuration;
+        }
+        else {
+            value = mTotalValue;
+            yourValue = mYourTotalValue;
+            duration = mTotalDuration;
+        }
+        // value
+        value.setText(String.valueOf(goal.getMoney()));
+
+        // duration and your value
+        Calendar calendar = Calendar.getInstance();
+        Calendar calendar2 = Calendar.getInstance();
+        Date today = calendar.getTime();
+        calendar2.setTime(goal.getStartDate());
+        calendar2.add(Calendar.DAY_OF_MONTH, goal.getDuration());
+        Date endDate = calendar2.getTime();
+
+        if (endDate.compareTo(today) <= 0) {
+            int days = 0;
+            duration.setText(days + " days");
+            double money = RecordData.getInstance().totalExpense(goal.getStartDate(), endDate);
+            yourValue.setText(String.valueOf(money));
+        }
+        else {
+
+//                long diff = today.getTime() - eGoal.getStartDate().getTime();
+//                long days_diff = (diff / (1000*60*60*24)) % 365;
+//                mExpenseDuration.setText(String.valueOf(days_diff));
+            long diffInMillies = Math.abs(today.getTime() - endDate.getTime());
+            long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+            duration.setText(String.valueOf(diff));
+
+            double money = RecordData.getInstance().totalExpense(goal.getStartDate(), today);
+            if (money < goal.getMoney()) {
+                yourValue.setTextColor(getContext().getResources().getColor(R.color.incomeColor));
+            }
+            else {
+                yourValue.setTextColor(getContext().getResources().getColor(R.color.expenseColor));
+            }
+            yourValue.setText(String.valueOf(money));
+        }
     }
 
     @Override
@@ -111,11 +174,9 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onResume() {
+        super.onResume();
 
-        if (requestCode == REQUEST_EDIT) {
-            // Do something here
-        }
+        setUpEvent();
     }
 }

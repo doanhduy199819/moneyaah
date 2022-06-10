@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.RecordData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -82,6 +82,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment f) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment currentFragment = fm.findFragmentById(R.id.fragment_container);
+        if (f.equals(currentFragment)) {
+            Toast.makeText(MainActivity.this, "Same Screen", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        fm.beginTransaction()
+                .replace(R.id.fragment_container, f)
+                .commit();
+    }
+    private void reloadFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment currentFragment = fm.findFragmentById(R.id.fragment_container);
         if (f.equals(currentFragment)) {
