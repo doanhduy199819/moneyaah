@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.14791666666666667" />
         <entry key="..\:/Nam_3/Ki_2/CDIO2/Final_CDIO/moneyaah/app/src/main/res/layout/fragment_statistics.xml" value="0.1598731884057971" />
         <entry key="app/src/main/res/drawable-anydpi/add_icon.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/drawable-anydpi/edit_icon.xml" value="0.19947916666666668" />
@@ -27,14 +28,14 @@
         <entry key="app/src/main/res/layout/activity_welcome_screen.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_expense_fragent.xml" value="0.11730072463768115" />
-        <entry key="app/src/main/res/layout/fragment_goal.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_goal.xml" value="0.2524752475247525" />
         <entry key="app/src/main/res/layout/fragment_history_wallet.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/fragment_income.xml" value="0.11730072463768115" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.10207700101317123" />
         <entry key="app/src/main/res/layout/fragment_month_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22276422764227644" />
-        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_list_record.xml" value="0.375" />
         <entry key="app/src/main/res/layout/list_item_category.xml" value="0.1" />

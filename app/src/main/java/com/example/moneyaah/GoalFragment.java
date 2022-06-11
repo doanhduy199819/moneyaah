@@ -1,18 +1,25 @@
 package com.example.moneyaah;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.moneyaah.classes.Goal;
 import com.example.moneyaah.classes.RecordData;
@@ -37,11 +44,12 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
 
     private String mParam1;
     private String mParam2;
-    private RelativeLayout mExpenseLayout, mTotalLayout;
+    private RelativeLayout mExpenseLayout;
     private TextView mExpenseValue, mYourExpenseValue, mExpenseDuration;
-    private TextView mTotalValue, mYourTotalValue, mTotalDuration;
-    private Button mEditButton;
-
+    private Button mNewGoalButton;
+    private ImageButton mSaveLimitButton;
+    private TextView mBalanceLabel;
+    private EditText mLimitEdit;
 
 
     public GoalFragment() {
@@ -92,17 +100,15 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
         mYourExpenseValue = view.findViewById(R.id.your_expense_value);
         mExpenseDuration = view.findViewById(R.id.expense_duration_value);
 
-        mTotalLayout = view.findViewById(R.id.total_track_show);
-        mTotalValue = view.findViewById(R.id.total_value);
-        mYourTotalValue = view.findViewById(R.id.your_total_value);
-        mTotalDuration = view.findViewById(R.id.total_duration_value);
+        mNewGoalButton = view.findViewById(R.id.button_new_goal);
+        mSaveLimitButton = view.findViewById(R.id.button_save_limit);
 
-        mEditButton = view.findViewById(R.id.button_new_goal);
-
+        mBalanceLabel = view.findViewById(R.id.label_balance);
+        mLimitEdit = view.findViewById(R.id.edit_limit);
     }
 
     private void setUpEvent() {
-        mEditButton.setOnClickListener(this);
+        mNewGoalButton.setOnClickListener(this);
         if (UserDData.get().getExpenseGoal() == null) {
             mExpenseLayout.setVisibility(View.GONE);
         } else {
@@ -110,26 +116,38 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
             displayGoal(UserDData.get().getExpenseGoal());
         }
 
-        if (UserDData.get().getTotalGoal() == null) {
-            mTotalLayout.setVisibility(View.GONE);
-        } else {
-            mTotalLayout.setVisibility(View.VISIBLE);
-            displayGoal(UserDData.get().getTotalGoal());
-        }
+        mBalanceLabel.setText(String.valueOf(UserDData.get().getBalance()));
+        mLimitEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Hide keyboard when enter
+                InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        });
+        mSaveLimitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    // send data to userdata
+                    double limit = Double.parseDouble(mLimitEdit.getText().toString());
+                    Goal goal = new Goal(1, limit, 0);
+                    UserDData.get().setTotalGoal(goal);
+                    Toast.makeText(getActivity(), "You set alert for limit: $ " + UserDData.get().getTotalGoal().getMoney(), Toast.LENGTH_SHORT).show();
+                    mLimitEdit.clearFocus();
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "Invalid limit", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void displayGoal(@NonNull Goal goal) {
         TextView value, yourValue, duration;
-        if (goal.getType() == Goal.EXPENSE) {
-            value = mExpenseValue;
-            yourValue = mYourExpenseValue;
-            duration = mExpenseDuration;
-        }
-        else {
-            value = mTotalValue;
-            yourValue = mYourTotalValue;
-            duration = mTotalDuration;
-        }
+        value = mExpenseValue;
+        yourValue = mYourExpenseValue;
+        duration = mExpenseDuration;
         // value
         value.setText(String.valueOf(goal.getMoney()));
 
@@ -148,10 +166,6 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
             yourValue.setText(String.valueOf(money));
         }
         else {
-
-//                long diff = today.getTime() - eGoal.getStartDate().getTime();
-//                long days_diff = (diff / (1000*60*60*24)) % 365;
-//                mExpenseDuration.setText(String.valueOf(days_diff));
             long diffInMillies = Math.abs(today.getTime() - endDate.getTime());
             long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
             duration.setText(String.valueOf(diff));
@@ -169,8 +183,28 @@ public class GoalFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(getActivity(), EditGoalActivity.class);
-        startActivityForResult(intent, REQUEST_EDIT);
+        if (UserDData.get().getExpenseGoal() != null && !UserDData.get().getExpenseGoal().isExpired()) {
+            // Alert User
+            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+
+            alertDialog.setTitle("Goal already exists");
+            alertDialog.setMessage("You are following your goal and almost get it, do you want to" +
+                    " override this goal");
+            alertDialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(getActivity(), EditGoalActivity.class);
+                    startActivityForResult(intent, REQUEST_EDIT);
+                }
+            });
+            alertDialog.setButton(Dialog.BUTTON_NEGATIVE, "Cancel", (DialogInterface.OnClickListener) null);
+            alertDialog.show();
+        }
+        else {
+            Intent intent = new Intent(getActivity(), EditGoalActivity.class);
+            startActivityForResult(intent, REQUEST_EDIT);
+        }
+
     }
 
     @Override

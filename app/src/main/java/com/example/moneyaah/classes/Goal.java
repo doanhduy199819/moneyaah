@@ -58,4 +58,20 @@ public class Goal {
     public void setDuration(int duration) {
         this.duration = duration;
     }
+
+    public double averageMoney() {
+        return money/duration;
+    }
+
+    public Date getEndDate() {
+        Calendar c = Calendar.getInstance();
+        c.setTime(startDate);
+        c.add(Calendar.DAY_OF_MONTH, duration);
+        Date endDate = c.getTime();
+        return endDate;
+    }
+
+    public boolean isExpired() {
+        return Calendar.getInstance().getTime().after(getEndDate());
+    }
 }

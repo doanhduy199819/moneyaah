@@ -34,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecordData r = RecordData.getInstance();
-//        List<Record> todayList = r.getTodayList();
-        List<Record> dayTwo = r.getList(2, Calendar.JUNE);
-//        List<List<Record>> thisMonthList = r.getList(Calendar.JUNE);
 
         setUpUI();
     }
@@ -84,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
     private void loadFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment currentFragment = fm.findFragmentById(R.id.fragment_container);
-        if (f.equals(currentFragment)) {
-            Toast.makeText(MainActivity.this, "Same Screen", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if (f.equals(currentFragment)) {
+//            Toast.makeText(MainActivity.this, "Same Screen", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         fm.beginTransaction()
                 .replace(R.id.fragment_container, f)

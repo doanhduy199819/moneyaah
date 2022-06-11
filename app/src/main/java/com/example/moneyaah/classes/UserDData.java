@@ -1,8 +1,12 @@
 package com.example.moneyaah.classes;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class UserDData {
+    private double mBalance;
     private RecordData mData;
     private Goal mExpenseGoal;
     private Goal mTotalGoal;
@@ -10,6 +14,7 @@ public class UserDData {
 
     private UserDData() {
         mData = RecordData.getInstance();
+        initData();
     }
     public static UserDData get() {
         if (sGlobInstance == null) {
@@ -39,5 +44,24 @@ public class UserDData {
 
     public void setTotalGoal(Goal totalGoal) {
         mTotalGoal = totalGoal;
+    }
+
+    public double getBalance() {
+        return mBalance;
+    }
+
+    public void setBalance(double balance) {
+        mBalance = balance;
+    }
+
+    private void initData() {
+        mBalance = 5000; // default
+        Calendar calendar = Calendar.getInstance();
+//        Date date = new GregorianCalendar(2022, Calendar.JUNE, 2).getTime();
+        Date date = new GregorianCalendar(2022, Calendar.JUNE, 2).getTime();
+
+        Goal eGoal = new Goal(0,70, date, 30);
+
+        setExpenseGoal(eGoal);
     }
 }

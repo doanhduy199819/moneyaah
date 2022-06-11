@@ -82,16 +82,17 @@ public class EditGoalActivity extends AppCompatActivity {
             }
         });
 
+        mTotalDetail.setVisibility(View.GONE);
         mTrackTotalSwitch.setChecked(false);
         mTrackTotalSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    mTotalDetail.setVisibility(View.VISIBLE);
-                else {
-                    totalEdit.setText("");
-                    mTotalDetail.setVisibility(View.GONE);
-                }
+//                if (isChecked)
+//                    mTotalDetail.setVisibility(View.VISIBLE);
+//                else {
+//                    totalEdit.setText("");
+//                    mTotalDetail.setVisibility(View.GONE);
+//                }
             }
         });
 
@@ -99,25 +100,6 @@ public class EditGoalActivity extends AppCompatActivity {
         expenseRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                double money = 0;
-//                try {
-//                    money = Double.parseDouble(expenseEdit.getText().toString());
-//                } catch (Exception e) {
-//                    Toast.makeText(EditGoalActivity.this, "money null", Toast.LENGTH_SHORT).show();
-//                }
-//                Goal goal = new Goal(0, money, 0);
-//                switch (checkedId) {
-//                    case R.id.rbutton_expense_week:
-//                        goal.setDuration(7);
-//                        UserDData.get().setExpenseGoal(goal);
-//                        break;
-//                    case R.id.rbutton_expense_month:
-//                        goal.setDuration(30);
-//                        UserDData.get().setExpenseGoal(goal);
-//                        break;
-//                    default:
-//                        break;
-//                }
             }
         });
         totalRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

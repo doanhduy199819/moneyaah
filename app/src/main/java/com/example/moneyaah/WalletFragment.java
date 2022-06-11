@@ -1,5 +1,6 @@
 package com.example.moneyaah;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.moneyaah.screens.NoteScreen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
@@ -92,6 +94,9 @@ public class WalletFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Change to Add Record Screen", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(), NoteScreen.class);
+                startActivity(intent);
             }
         });
     }

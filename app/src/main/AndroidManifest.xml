@@ -48,7 +48,9 @@
             android:exported="false" />
         <activity
             android:name=".screens.NoteScreen"
-            android:exported="false" />
+            android:exported="false" >
+
+        </activity>
         <activity
             android:name=".screens.StatisticScreen"
             android:exported="false" />
