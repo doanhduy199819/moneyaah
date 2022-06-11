@@ -41,6 +41,49 @@ public class RecordData {
         }
         return res;
     }
+
+    public List<Double> getListByMonth(int month) {
+        List<Record> res = new ArrayList<>();
+        for (int i=0; i<mRecList.size(); i++) {
+            Record rec = mRecList.get(i);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(rec.getDate());
+            if (month == calendar.get(Calendar.MONTH) && mRecList.get(i).type == 1) {
+                res.add(rec);
+            }
+        }
+
+        double food = 0.0;
+        double coffee = 0.0;
+        double hangOut = 0.0;
+        double dating = 0.0;
+
+        List<Double> listCategory = new ArrayList<>();
+
+        for(int i=0; i<res.size(); i++){
+            switch (res.get(i).getCategory()){
+                case "Food":
+                    food += res.get(i).getMoney();
+                    break;
+                case "Coffee":
+                    coffee += res.get(i).getMoney();
+                    break;
+                case "Hang out":
+                    hangOut += res.get(i).getMoney();
+                    break;
+                default:
+                    dating += res.get(i).getMoney();
+                    break;
+            }
+        }
+        listCategory.add(food);
+        listCategory.add(coffee);
+        listCategory.add(hangOut);
+        listCategory.add(dating);
+
+        return listCategory;
+    }
+
     public List<Record> getTodayList() {
         int month = Calendar.getInstance().get(Calendar.MONTH);
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);

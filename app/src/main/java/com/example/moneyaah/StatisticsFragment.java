@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.RecordData;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -20,6 +22,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,7 +84,7 @@ public class StatisticsFragment extends Fragment {
 
 
         setupPieChart();
-        List<Record> list = RecordData.getInstance().getAllRecords();
+        List<Double> list = RecordData.getInstance().getListByMonth(new Date().getMonth());
         loadPieChartData(list);
 
         return view;
@@ -96,18 +100,32 @@ public class StatisticsFragment extends Fragment {
         pieChart.getDescription().setEnabled(false);
 
         Legend legend = pieChart.getLegend();
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
-        legend.setDrawInside(false);
-        legend.setEnabled(true);
-        legend.setTextSize(14);
+//        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+//        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+//        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        legend.setDrawInside(false);
+        legend.setEnabled(false);
+//        legend.setTextSize(14);
     }
 
-    public void loadPieChartData(List<Record> listData){
+    public void loadPieChartData(List<Double> listData){
         ArrayList<PieEntry> entries = new ArrayList<>();
-        for (int i=0; i<listData.size(); i++){
-            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(i).money)), listData.get(i).description));
+
+        if(listData.get(0) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(0))),"Food"));
+
+        }
+        if(listData.get(1) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(1))),"Coffee"));
+
+        }
+        if(listData.get(2) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(2))),"Hang out"));
+
+        }
+        if(listData.get(3) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(3))),"Dating"));
+
         }
 
         ArrayList<Integer> colors = new ArrayList<>();
