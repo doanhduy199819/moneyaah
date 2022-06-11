@@ -9,7 +9,6 @@ import android.widget.TableLayout;
 
 import com.example.moneyaah.R;
 import com.example.moneyaah.ViewPagerAdapter;
-import com.example.moneyaah.classes.Record;
 import com.google.android.material.tabs.TabLayout;
 
 public class NoteScreen extends AppCompatActivity {
@@ -28,6 +27,5 @@ public class NoteScreen extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mviewPager.setAdapter(viewPagerAdapter);
         mtabLayout.setupWithViewPager(mviewPager);
-
     }
 }
