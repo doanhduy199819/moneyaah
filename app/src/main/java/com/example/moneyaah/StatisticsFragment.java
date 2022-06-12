@@ -9,13 +9,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.RecordData;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,34 +73,83 @@ public class StatisticsFragment extends Fragment {
         }
     }
 
+    private PieChart pieChart;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
-        PieChart pieChart = (PieChart) view.findViewById(R.id.pie_chart);
-        ArrayList<PieEntry> pieEntries = new ArrayList<>();
-
-        for(int i=1; i<6; i++){
-            float value = (float) (i * 10.0);
+        pieChart = (PieChart) view.findViewById(R.id.pie_chart);
 
 
-            PieEntry pieEntry = new PieEntry(i, "value" + i);
-
-            pieEntries.add(pieEntry);
-        }
-
-        PieDataSet pieDataSet = new PieDataSet(pieEntries, "ABC");
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        pieDataSet.setDrawValues(false);
-
-        pieChart.setData(new PieData(pieDataSet));
-
-        pieChart.animateXY(1500, 1500);
-        pieChart.getDescription().setText("Detailed spending statistics");
-        pieChart.getDescription().setTextColor(Color.BLUE);
+        setupPieChart();
+        List<Double> list = RecordData.getInstance().getListByMonth(new Date().getMonth());
+        loadPieChartData(list);
 
         return view;
     }
+
+    private void setupPieChart(){
+        pieChart.setDrawHoleEnabled(true);
+        pieChart.setUsePercentValues(true);
+        pieChart.setEntryLabelTextSize(12);
+        pieChart.setEntryLabelColor(Color.BLACK);
+        pieChart.setCenterText("Expense");
+        pieChart.setCenterTextSize(24);
+        pieChart.getDescription().setEnabled(false);
+
+        Legend legend = pieChart.getLegend();
+//        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+//        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+//        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        legend.setDrawInside(false);
+        legend.setEnabled(false);
+//        legend.setTextSize(14);
+    }
+
+    public void loadPieChartData(List<Double> listData){
+        ArrayList<PieEntry> entries = new ArrayList<>();
+
+        if(listData.get(0) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(0))),"Food"));
+
+        }
+        if(listData.get(1) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(1))),"Coffee"));
+
+        }
+        if(listData.get(2) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(2))),"Hang out"));
+
+        }
+        if(listData.get(3) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(3))),"Dating"));
+
+        }
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        for(int color: ColorTemplate.MATERIAL_COLORS){
+            colors.add(color);
+        }
+
+        for(int color: ColorTemplate.VORDIPLOM_COLORS){
+            colors.add(color);
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "Expense category");
+        dataSet.setColors(colors);
+
+        PieData data = new PieData(dataSet);
+        data.setDrawValues(true);
+        data.setValueFormatter(new PercentFormatter(pieChart));
+        data.setValueTextSize(12f);
+        data.setValueTextColor(Color.BLACK);
+
+        pieChart.setData(data);
+        pieChart.invalidate();
+
+        pieChart.animateY(1300, Easing.EaseInOutQuad);
+    }
+
 }

@@ -4,8 +4,14 @@ import static com.example.moneyaah.activity.MainActivity.amount;
 import static com.example.moneyaah.activity.MainActivity.records;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +21,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -22,17 +30,28 @@ import androidx.fragment.app.Fragment;
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
 import com.example.moneyaah.Record;
+import com.example.moneyaah.classes.Category;
+import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.UserDData;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Map;
+import java.util.Date;
+import java.util.Locale;
 
 public class IncomeFragment extends Fragment {
 
     String[] items = new String[]{"Trả thêm giờ", "Tiền lương", "Tiền cấp", "Tiền thưởng", "Khác"};
 
     private EditText selectDate;
+    private EditText money;
+    private EditText description;
+    private Button btnSave;
     private Button btnSave;
     private TextView edtMoney;
     private TextView edtDescription;
@@ -44,6 +63,12 @@ public class IncomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_income, container, false);
+        Spinner dropdown = inflate.findViewById(R.id.spinner_iCategory);
+        selectDate = inflate.findViewById(R.id.edt_iSelect_date);
+        money = inflate.findViewById(R.id.edt_iMoney);
+        description = inflate.findViewById(R.id.edt_iDescription);
+        btnSave = inflate.findViewById(R.id.btn_iSave);
+
         initUi(inflate);
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
@@ -52,19 +77,11 @@ public class IncomeFragment extends Fragment {
         selectDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        IncomeFragment.this.getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        month += 1;
-                        String date = day + "/" + month + "/" + year;
-                        selectDate.setText(date);
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
+              showDateTimeDialog(selectDate);
             }
         });
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,8 +93,22 @@ public class IncomeFragment extends Fragment {
         LocalDateTime now = LocalDateTime.now();
         selectDate.setText(dtf.format(now).toString());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(),  android.R.layout.simple_spinner_dropdown_item, Category.incomeNames);
+//set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long dtStart = Date.parse(selectDate.getText().toString());
+                Date date = new Date(dtStart);
+                Record r = new Record(date, Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString());
+
+//                Toast.makeText(inflate.getContext(), r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription(), Toast.LENGTH_SHORT).show();
+                Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
+                UserDData.get().getData().add(r);
+            }
+        });
 
         return inflate;
     }
@@ -99,5 +130,34 @@ public class IncomeFragment extends Fragment {
         Helper.updateObject("User/" + Helper.getUsername(getActivity()) + "/Records/", newRecord);
         recordAmount = amount + recordAmount;
         Helper.updateNumber("User/" + Helper.getUsername(getActivity()) + "/Amount", recordAmount);
+    }
+
+    private void showDateTimeDialog(final EditText date_time_in) {
+        final Calendar calendar=Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener dateSetListener=new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR,year);
+                calendar.set(Calendar.MONTH,month);
+                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+
+                TimePickerDialog.OnTimeSetListener timeSetListener= new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        calendar.set(Calendar.HOUR_OF_DAY,hourOfDay);
+                        calendar.set(Calendar.MINUTE,minute);
+
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm");
+
+                        date_time_in.setText(simpleDateFormat.format(calendar.getTime()));
+                    }
+                };
+
+                new TimePickerDialog(IncomeFragment.this.getContext(),timeSetListener,calendar.get(Calendar.HOUR_OF_DAY),calendar.get(Calendar.MINUTE),false).show();
+            }
+        };
+
+        new DatePickerDialog(IncomeFragment.this.getContext(),dateSetListener,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+
     }
 }

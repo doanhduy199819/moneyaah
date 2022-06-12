@@ -1,4 +1,4 @@
-package com.example.moneyaah.fragment;
+package com.example.moneyaah;
 
 import android.os.Bundle;
 
@@ -9,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.moneyaah.NotiArrayAdapter;
-import com.example.moneyaah.model.Notification;
-import com.example.moneyaah.R;
+import com.example.moneyaah.classes.Notification;
 
 import java.util.ArrayList;
 

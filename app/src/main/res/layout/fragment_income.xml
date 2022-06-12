@@ -17,13 +17,13 @@
         android:layout_marginRight="10dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="Ngày: "
+            android:text="Date: "
             android:textSize="20sp"
             android:layout_marginRight="5dp"/>
         <EditText
-            android:id="@+id/edt_select_date"
+            android:id="@+id/edt_iSelect_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Select date"
@@ -37,13 +37,13 @@
         android:layout_marginRight="10dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="Thể loại: "
+            android:text="Category: "
             android:textSize="20sp"
             android:layout_marginRight="5dp"/>
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/spinner_iCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown"/>
@@ -57,14 +57,14 @@
         android:layout_marginRight="10dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="Số tiền: "
+            android:text="Money: "
             android:textSize="20sp"
             android:layout_marginRight="5dp"/>
 
         <EditText
-            android:id="@+id/edt_money"
+            android:id="@+id/edt_iMoney"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number" />
@@ -77,20 +77,20 @@
         android:layout_marginRight="10dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:text="Ghi chú: "
+            android:text="Description: "
             android:textSize="20sp"
             android:layout_marginRight="5dp"/>
 
         <EditText
-            android:id="@+id/edt_desc"
+            android:id="@+id/edt_iDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_iSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

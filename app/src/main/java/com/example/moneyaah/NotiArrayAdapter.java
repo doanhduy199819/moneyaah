@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.moneyaah.model.Notification;
+import com.example.moneyaah.classes.Notification;
 
 import java.util.List;
 

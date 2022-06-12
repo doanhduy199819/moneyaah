@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.moneyaah.Constants;
 import com.example.moneyaah.Helper;
@@ -99,7 +98,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setUpUI(View mainView) {
-        editButton = mainView.findViewById(R.id.button_edit);
+        editButton = mainView.findViewById(R.id.button_new_goal);
 
         emailContent = mainView.findViewById(R.id.email_content);
         editEmail = mainView.findViewById(R.id.edit_email);

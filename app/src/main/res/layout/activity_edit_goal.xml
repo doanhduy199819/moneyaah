@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:backgroundTint="@color/backgroundColor"
+    tools:context=".EditGoalActivity">
+
+    <TextView
+        android:id="@+id/goal_slogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="SAVING IS POWER"
+        android:textColor="@color/backgroundColor"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/goal_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="48dp"
+        android:text="Set your goal here"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <RelativeLayout
+        android:id="@+id/total_track_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/goal_title"
+        android:layout_alignTop="@id/goal_title"
+        android:layout_marginTop="48dp">
+
+        <TextView
+            android:id="@+id/expense_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingEnd="16dp"
+            android:text="Track your expense" />
+
+        <Switch
+            android:id="@+id/sw_track_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:theme="@style/Theme.SwitchTheme"
+            android:layout_toRightOf="@id/expense_label" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/expense_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_track_show"
+        android:layout_alignLeft="@id/total_track_show"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:text="Maximum spent" />
+
+            <EditText
+                android:id="@+id/edit_expense_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="7"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rgroup_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbutton_expense_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In a week" />
+
+            <RadioButton
+                android:id="@+id/rbutton_expense_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In a month" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/total_track"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expense_detail"
+        android:layout_alignStart="@id/total_track_show"
+        android:layout_alignEnd="@id/total_track_show"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingEnd="16dp"
+            android:text="Track your total" />
+
+        <Switch
+            android:id="@+id/sw_track_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:theme="@style/Theme.SwitchTheme"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/total_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_track"
+        android:layout_alignLeft="@id/total_track_show"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:text="Minimum total" />
+
+            <EditText
+                android:id="@+id/edit_total_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="7"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rgroup_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbutton_total_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End of a week"
+                android:textSize="12sp" />
+
+            <RadioButton
+                android:id="@+id/rbutton_total_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End of a month"
+                android:textSize="12sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_detail"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:text="Cancel"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/button_set_goal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_detail"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@id/button_cancel"
+        android:backgroundTint="@color/backgroundColor"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:text="Set"
+        android:textColor="@color/white" />
+
+
+</RelativeLayout>
