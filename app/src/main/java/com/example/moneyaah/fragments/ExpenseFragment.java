@@ -81,9 +81,10 @@ public class ExpenseFragment extends Fragment {
                 Date date = new Date(dtStart);
                 Record r = new Record(date, Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString());
 
-//                Toast.makeText(inflate.getContext(), r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription(), Toast.LENGTH_SHORT).show();
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
                 UserDData.get().getData().add(r);
+                getActivity().finish();
+
             }
         });
 
