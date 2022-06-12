@@ -96,4 +96,13 @@ public class HistoryWalletFragment extends Fragment {
     public void onResume() {
         super.onResume();
     }
+
+    public void showFloattingButton() {
+        WalletFragment parentFrag = ((WalletFragment)HistoryWalletFragment.this.getParentFragment());
+        parentFrag.showFloattingButton();
+    }
+    public void hideFloattingButton() {
+        WalletFragment parentFrag = ((WalletFragment)HistoryWalletFragment.this.getParentFragment());
+        parentFrag.hideFloattingButton();
+    }
 }

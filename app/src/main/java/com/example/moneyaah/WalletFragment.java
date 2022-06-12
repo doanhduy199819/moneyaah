@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -114,7 +115,26 @@ public class WalletFragment extends Fragment {
     }
 
     @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.button_notification:
+                Intent intent = new Intent(getActivity(), NotiActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+    }
+
+    public void showFloattingButton() {
+        mAddRecordButton.show();
+    }
+    public void hideFloattingButton() {
+        mAddRecordButton.hide();
     }
 }

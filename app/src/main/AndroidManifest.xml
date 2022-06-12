@@ -10,16 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moneyaah">
         <activity
+            android:name=".NotiActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditGoalActivity"
-            android:exported="false" >
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".AddCategoryActivity"
             android:exported="false" />
         <activity
             android:name=".CategoryActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
@@ -28,6 +29,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

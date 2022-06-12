@@ -16,6 +16,7 @@
         android:text="SAVING IS POWER"
         android:textColor="@color/backgroundColor"
         android:textSize="24sp"
+        android:layout_marginTop="16dp"
         android:textStyle="bold" />
 
     <TextView

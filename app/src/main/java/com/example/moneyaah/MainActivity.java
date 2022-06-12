@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Fragments
         walletFragment = new WalletFragment();
-        notiFragment = new NotificationFragment();
+//        notiFragment = new NotificationFragment();
         profileFragment = new ProfileFragment();
         statisticsFragment = new StatisticsFragment();
         goalFragment = new GoalFragment();
@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.goal:
                         loadFragment(goalFragment);
                         return true;
-                    case R.id.notification:
-                        loadFragment(notiFragment);
-                        return true;
+//                    case R.id.notification:
+//                        loadFragment(notiFragment);
+//                        return true;
                     case R.id.profile:
                         loadFragment(profileFragment);
                         return true;

@@ -3,10 +3,12 @@ package com.example.moneyaah;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -117,12 +119,12 @@ public class MonthHistoryFragment extends Fragment {
         listRecords = RecordData.getInstance().getList(month);
         if (listRecords != null){
             for (Object obj : listRecords) {
-
                 monthHistoryAdapter.insert(obj, monthHistoryAdapter.getCount());
             }
         }
         monthHistoryAdapter.notifyDataSetChanged();
     }
+
 
     private void setUpUI(View view) {
         mMonthLabel = view.findViewById(R.id.label_month);
@@ -146,6 +148,46 @@ public class MonthHistoryFragment extends Fragment {
 
         monthHistoryAdapter = new RecordAdapter(getActivity(), listRecords);
         mListMonthRecord.setAdapter(monthHistoryAdapter);
+        mListMonthRecord.setOnScrollListener(new AbsListView.OnScrollListener() {
+//            boolean isShown = true;
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+//                if (scrollState == SCROLL_STATE_TOUCH_SCROLL){
+////                    btn.animate().translationYBy(350);
+//                    MonthHistoryFragment.this.hideFloattingButton();
+//                } else{
+////                    btn.animate().cancel();
+//                    MonthHistoryFragment.this.showFloattingButton();
+//                }
+                if (scrollState == SCROLL_STATE_IDLE) {
+                    MonthHistoryFragment.this.showFloattingButton();
+                }
+                else {
+                    MonthHistoryFragment.this.hideFloattingButton();
+                }
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//                if (firstVisibleItem < 2) {
+//
+//                    MonthHistoryFragment.this.hideFloattingButton();
+//                }else {
+//                    MonthHistoryFragment.this.showFloattingButton();
+//                }
+            }
+        });
+    }
+
+    public void showFloattingButton() {
+        HistoryWalletFragment parentFrag = ((HistoryWalletFragment)MonthHistoryFragment.this.getParentFragment());
+        parentFrag.showFloattingButton();
+    }
+    public void hideFloattingButton() {
+        HistoryWalletFragment parentFrag = ((HistoryWalletFragment)MonthHistoryFragment.this.getParentFragment());
+        parentFrag.hideFloattingButton();
     }
 
     private double getTotalIncome() {

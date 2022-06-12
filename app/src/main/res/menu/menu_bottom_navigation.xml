@@ -16,11 +16,6 @@
         android:title="Goal" />
 
     <item
-        android:id="@+id/notification"
-        android:icon="@drawable/notification_icon"
-        android:title="Notifications" />
-
-    <item
         android:id="@+id/profile"
         android:icon="@drawable/user_icon"
         android:title="User profile" />

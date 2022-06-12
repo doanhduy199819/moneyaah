@@ -27,6 +27,7 @@
         android:clickable="true"
         android:src="@drawable/add_icon"
         app:backgroundTint="@color/backgroundColor"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         app:rippleColor="#FFFFFF" />
 
 </RelativeLayout>

@@ -5,13 +5,6 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.14791666666666667" />
         <entry key="..\:/Nam_3/Ki_2/CDIO2/Final_CDIO/moneyaah/app/src/main/res/layout/fragment_statistics.xml" value="0.1598731884057971" />
-<<<<<<< HEAD
-=======
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/Final_CDIO/moneyaah/app/src/main/res/layout/fragment_wallet.xml" value="0.2" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/moneyaah_1106/moneyaah/app/src/main/res/layout/fragment_expense_fragent.xml" value="0.24320652173913043" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/moneyaah_1106/moneyaah/app/src/main/res/layout/fragment_income.xml" value="0.24320652173913043" />
-        <entry key="..\:/Nam_3/Ki_2/CDIO2/moneyaah_1106/moneyaah/app/src/main/res/layout/fragment_statistics.xml" value="0.24320652173913043" />
->>>>>>> b3c6b86545cd68301331b829bcb3bbb5df332397
         <entry key="app/src/main/res/drawable-anydpi/add_icon.xml" value="0.18802083333333333" />
         <entry key="app/src/main/res/drawable-anydpi/edit_icon.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.21510416666666668" />
@@ -26,6 +19,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.20025104957913734" />
         <entry key="app/src/main/res/layout/activity_note.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_noti.xml" value="0.12228260869565218" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_in_screen.xml" value="0.11730072463768115" />
