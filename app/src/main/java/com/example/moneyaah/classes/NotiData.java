@@ -18,4 +18,11 @@ public class NotiData {
         }
         return globInstance;
     }
+    public void add(MyNotification noti) {
+        mNotiList.add(noti);
+    }
+
+    public List<MyNotification> getNotiList() {
+        return mNotiList;
+    }
 }

@@ -1,7 +1,11 @@
 package com.example.moneyaah.fragments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -20,8 +24,10 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.moneyaah.EditGoalActivity;
 import com.example.moneyaah.R;
 import com.example.moneyaah.classes.Category;
+import com.example.moneyaah.classes.MyNotification;
 import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.classes.UserDData;
 
@@ -79,6 +85,8 @@ public class IncomeFragment extends Fragment {
 
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
                 UserDData.get().getData().add(r);
+
+
                 getActivity().finish();
             }
         });

@@ -125,6 +125,20 @@ public class RecordData {
         }
         return sum;
     }
+    public double totalExpense(Date date) {
+        double sum = 0;
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(date);
+
+        Calendar c2 = Calendar.getInstance();
+        for (Record r: mRecList) {
+            c2.setTime(r.getDate());
+            if (c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH)
+            &&  c1.get(Calendar.DAY_OF_MONTH) == c2.get(Calendar.DAY_OF_MONTH))
+                sum += r.type == Record.EXPENSE ? r.getMoney(): 0;
+        }
+        return sum;
+    }
     public double totalExpense(Date startDate, Date endDate) {
         double sum = 0;
         for (Record r: mRecList) {

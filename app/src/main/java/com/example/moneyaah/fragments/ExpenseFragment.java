@@ -1,7 +1,10 @@
 package com.example.moneyaah.fragments;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -22,9 +25,11 @@ import android.widget.Toast;
 
 import com.example.moneyaah.R;
 import com.example.moneyaah.classes.Category;
+import com.example.moneyaah.classes.MyNotification;
 import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.classes.UserDData;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -82,8 +87,38 @@ public class ExpenseFragment extends Fragment {
                 Record r = new Record(date, Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString());
 
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
-                UserDData.get().getData().add(r);
-                getActivity().finish();
+
+                double totalTodayExpense = UserDData.get().getData().totalExpense(date) + r.getMoney();
+                double average = UserDData.get().getExpenseGoal().averageMoney();
+
+                if (totalTodayExpense > average && !UserDData.get().getExpenseGoal().isExpired()) {
+                    // Alert User
+                    AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
+
+                    alertDialog.setTitle("Your expense reaches limit");
+                    alertDialog.setMessage("You are going to overspend average money for a day, are you sure ?");
+                    alertDialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Push 1 noti thong bao ve viec tieu qua nhieu
+                            double extra = totalTodayExpense - average;
+                            String title = "Control your expense";
+                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            String dateStr = dateFormat.format(date);
+                            String content = "You overspent " +Math.round(extra)+ "$ on "+ dateStr;
+                            MyNotification noti = new MyNotification(getContext(),title , content);
+                            noti.show(MyNotification.ALERT_OVER_EXPENSE);
+                            UserDData.get().getData().add(r);
+                            getActivity().finish();
+                        }
+                    });
+                    alertDialog.setButton(Dialog.BUTTON_NEGATIVE, "Cancel", (DialogInterface.OnClickListener) null);
+                    alertDialog.show();
+                }
+                else {
+                    UserDData.get().getData().add(r);
+                    getActivity().finish();
+                }
 
             }
         });

@@ -14,12 +14,15 @@ import java.util.GregorianCalendar;
 public class UserDData {
     private double mBalance;
     private RecordData mData;
+    private NotiData mNotiData;
     private Goal mExpenseGoal;
     private Goal mTotalGoal;
     private static UserDData sGlobInstance;
+    public static final String LOCAL_DATA_KEY = "userdata";
 
     private UserDData() {
         mData = RecordData.getInstance();
+        mNotiData = NotiData.getInstance();
         initData();
     }
     public static UserDData get() {
@@ -34,6 +37,14 @@ public class UserDData {
 
     public void setData(RecordData data) {
         mData = data;
+    }
+
+    public NotiData getNotiData() {
+        return mNotiData;
+    }
+
+    public void setNotiData(NotiData notiData) {
+        mNotiData = notiData;
     }
 
     public Goal getExpenseGoal() {
@@ -64,12 +75,15 @@ public class UserDData {
         mBalance = 5000; // default
         Calendar calendar = Calendar.getInstance();
 //        Date date = new GregorianCalendar(2022, Calendar.JUNE, 11).getTime();
-        Date date = new GregorianCalendar(2022, Calendar.JUNE, 2).getTime();
+        Date date = new GregorianCalendar(2022, Calendar.JUNE, 13).getTime();
 
         Goal eGoal = new Goal(0,70, date, 7);
 
         setExpenseGoal(eGoal);
     }
 
+    public void readDataFromLocal() {
+
+    }
 
 }

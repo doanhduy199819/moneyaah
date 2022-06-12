@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.moneyaah.classes.MyNotification;
+import com.example.moneyaah.classes.NotiData;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -72,28 +73,19 @@ public class NotificationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
 
         mListView = view.findViewById(R.id.list_notification);
-        ArrayList<MyNotification> notiArray = new ArrayList<MyNotification>();
-
         // Fake data
-        for (int i=0; i<3; ++i) {
-            String title = "MyNotification " + i;
-            String content = "I'm hungry";
-            notiArray.add(new MyNotification(getActivity(), title, content));
-        }
+        //        ArrayList<MyNotification> notiArray = new ArrayList<MyNotification>();
+//        for (int i=0; i<3; ++i) {
+//            String title = "MyNotification " + i;
+//            String content = "I'm hungry";
+//            notiArray.add(new MyNotification(getActivity(), title, content));
+//        }
+//        NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(getActivity(),
+//                notiArray);
         NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(getActivity(),
-                notiArray);
+                NotiData.getInstance().getNotiList());
         mListView.setAdapter(list_noti_adapter);
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        String title = "LOVE MESSAGE";
-        String content = "I love you";
-
-        MyNotification notification = new MyNotification(getActivity(), title, content);
-        notification.show(MyNotification.ALERT_OVER_EXPENSE);
-
-    }
 }

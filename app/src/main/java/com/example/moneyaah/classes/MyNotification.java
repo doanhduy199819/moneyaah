@@ -59,5 +59,11 @@ public class MyNotification extends Notification {
     public void show(int notificationId) {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mContext);
         notificationManager.notify(notificationId, getInstance());
+
+        save();
+    }
+
+    public void save() {
+        NotiData.getInstance().add(this);
     }
 }
