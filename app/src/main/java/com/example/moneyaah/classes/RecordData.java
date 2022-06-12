@@ -13,7 +13,6 @@ public class RecordData {
 
     private RecordData() {
         mRecList = new ArrayList<Record>();
-        fakeData();
     }
 
     public static RecordData globInstance;
@@ -138,6 +137,9 @@ public class RecordData {
         return sum;
     }
 
+    public void setmRecList(List<Record> mRecList) {
+        this.mRecList = mRecList;
+    }
 
     private void fakeData() {
 

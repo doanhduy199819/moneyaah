@@ -1,7 +1,5 @@
 package com.example.moneyaah.fragments;
 
-import static com.example.moneyaah.activity.MainActivity.amount;
-import static com.example.moneyaah.activity.MainActivity.records;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -93,6 +91,7 @@ public class ExpenseFragment extends Fragment {
                 Record r = new Record(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString(), 1);
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
                 UserDData.get().getData().add(r);
+                addNewRecord();
                 getActivity().finish();
 
             }
@@ -136,21 +135,15 @@ public class ExpenseFragment extends Fragment {
         edtMoney = inflate.findViewById(R.id.edt_eMoney);
         edtDescription = inflate.findViewById(R.id.edt_eDescription);
         btnSave = inflate.findViewById(R.id.btn_eSave);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addNewRecord();
-            }
-        });
     }
 
     private void addNewRecord() {
         double recordAmount = Double.parseDouble(edtMoney.getText().toString());
-        Record newRecord = new Record(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(edtMoney.getText().toString()), dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), records.size() + 1);
+        Record newRecord = new Record(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(edtMoney.getText().toString()), dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), UserDData.get().getData().getAllRecords().size() + 1);
         Map<String, Object> recordUpdate = newRecord.toMap();
-        recordUpdate.put(String.valueOf(records.size() + 1), newRecord);
-        Helper.updateObject("User/" + Helper.getUsername() + "/Records/", newRecord);
-        recordAmount = amount - recordAmount;
-        Helper.updateNumber("User/" + Helper.getUsername() + "/Amount", recordAmount);
+        recordUpdate.put(String.valueOf(UserDData.get().getData().getAllRecords().size() + 1), newRecord);
+        Helper.updateObject("User/" + Helper.getUsername(requireActivity()) + "/Records/", newRecord);
+        recordAmount = 500000;
+        Helper.updateNumber("User/" + Helper.getUsername(requireActivity()) + "/Amount", recordAmount);
     }
 }

@@ -97,7 +97,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void handleUsername() {
-        String username = Helper.getUsername();
+        String username = Helper.getUsername(requireActivity());
         editEmail.setText(username);
     }
 
@@ -123,8 +123,8 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 emailContent.setVisibility(View.INVISIBLE);
                 editEmail.setVisibility(View.VISIBLE);
-                editEmail.setText(Helper.getUsername());
-                emailContent.setText(Helper.getUsername());
+                editEmail.setText(Helper.getUsername(requireActivity()));
+                emailContent.setText(Helper.getUsername(requireActivity()));
             }
         });
 
@@ -176,7 +176,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Helper.getUsername();
+                            Helper.getUsername(requireActivity());
                             flag[0] = true;
                         }
                     }

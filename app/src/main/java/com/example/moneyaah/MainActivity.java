@@ -1,24 +1,39 @@
 package com.example.moneyaah;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.classes.RecordData;
+import com.example.moneyaah.classes.UserDData;
 import com.example.moneyaah.fragment.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    ProgressDialog mProgressDialog;
 
     BottomNavigationView mBottomNavigationView;
 
@@ -35,11 +50,48 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         RecordData r = RecordData.getInstance();
-//        List<Record> todayList = r.getTodayList();
         List<Record> dayTwo = r.getList(2, Calendar.JUNE);
-//        List<List<Record>> thisMonthList = r.getList(Calendar.JUNE);
-
         setUpUI();
+    }
+
+    @Override
+    protected void onStart() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage("LOADING");
+            mProgressDialog.setIndeterminate(true);
+        }
+        mProgressDialog.show();
+
+        handleStart();
+
+        handleStart();
+        super.onStart();
+    }
+
+    private void handleStart() {
+        String username = Helper.getUsername(this);
+        DatabaseReference recordDbRef = Helper.getDataRef("User/" + username + "/Records");
+        recordDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Record> records = new ArrayList<>();
+                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                    Record record = postSnapshot.getValue(Record.class);
+                    records.add(record);
+                }
+                UserDData.get().getData().setmRecList(records);
+                if (mProgressDialog != null && mProgressDialog.isShowing()) {
+                    mProgressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void setUpUI() {
@@ -82,6 +134,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setMessage("LOADING");
+            mProgressDialog.setIndeterminate(true);
+        }
+        mProgressDialog.show();
+        this.handleStart();
+        super.onResume();
+    }
+
     private void loadFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment currentFragment = fm.findFragmentById(R.id.fragment_container);
@@ -94,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, f)
                 .commit();
     }
+
     private void reloadFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
         Fragment currentFragment = fm.findFragmentById(R.id.fragment_container);
@@ -106,4 +176,26 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, f)
                 .commit();
     }
+
+//    private void getListRecord() {
+//        String username = Helper.getUsername(this);
+//        DatabaseReference recordDbRef = Helper.getDataRef("User/" + username + "/Records");
+//
+//        recordDbRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//                List<Record> records = new ArrayList<>();
+//                for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+//                    Record record = postSnapshot.getValue(Record.class);
+//                    records.add(record);
+//                }
+//                UserDData.get().getData().setmRecList(records);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//            }
+//        });
+//    }
+
 }

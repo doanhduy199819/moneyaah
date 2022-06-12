@@ -182,20 +182,18 @@ public class SignUpScreen extends AppCompatActivity {
 
     public void signUp(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                Helper.updateNumber("User/" + Helper.getUsername() + "/Amount", (double) 0);
-                            }
-                            updateUI(user);
-                        } else {
-                            Toast.makeText(SignUpScreen.this, "Can't create new user.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            Helper.saveUser(SignUpScreen.this, user.getDisplayName());
+                            Helper.updateNumber("User/" + Helper.getUsername(SignUpScreen.this) + "/Amount", (double) 0);
                         }
+                        updateUI(user);
+                    } else {
+                        Toast.makeText(SignUpScreen.this, "Can't create new user.",
+                                Toast.LENGTH_SHORT).show();
+                        updateUI(null);
                     }
                 });
 

@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+//import com.example.moneyaah.classes.Notification;
 import com.example.moneyaah.classes.Notification;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,7 +69,7 @@ public class NotificationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
 
         mListView = view.findViewById(R.id.list_notification);
-        ArrayList<Notification> notiArray = new ArrayList<>();
+        ArrayList<Notification> notiArray = new ArrayList<Notification>();
 
         // Fake data
         for (int i=0; i<3; ++i) {
@@ -77,9 +77,9 @@ public class NotificationFragment extends Fragment {
             String content = "I'm hungry";
             notiArray.add(new Notification(title, content));
         }
-        NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(requireActivity(),
-                notiArray);
-        mListView.setAdapter(list_noti_adapter);
+//        NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(getActivity(),
+//                notiArray);
+//        mListView.setAdapter(list_noti_adapter);
         return view;
     }
 }

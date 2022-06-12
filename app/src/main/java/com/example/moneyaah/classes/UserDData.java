@@ -40,4 +40,5 @@ public class UserDData {
     public void setTotalGoal(Goal totalGoal) {
         mTotalGoal = totalGoal;
     }
+
 }

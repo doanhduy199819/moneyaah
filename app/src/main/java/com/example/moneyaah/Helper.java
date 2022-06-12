@@ -13,8 +13,17 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Helper {
 
-    public static String getUsername() {
-        return FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+    public static void saveUser(Context context, String user) {
+        String[] users= user.split("@");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(Constants.USERNAME, users[0]);
+        editor.apply();
+    }
+
+    public static String getUsername(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(Constants.USERNAME, "");
     }
 
     public static void updateNumber(String location, Double value) {
@@ -22,7 +31,9 @@ public class Helper {
         database.setValue(value);
     }
 
+
     public static void updateObject(String location, Record record) {
+        Log.d("LOCATION", location);
         DatabaseReference database = FirebaseDatabase.getInstance().getReference(location);
         database.push().setValue(record);
     }

@@ -52,20 +52,4 @@ public class WalletFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_wallet, container, false);
     }
 
-//    public void getAmount() {
-//        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-//        DatabaseReference myRef = database.child("admin").getRef();
-//        ValueEventListener amountListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String value = dataSnapshot.getValue(String.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//            }
-//        };
-//        myRef.addValueEventListener(amountListener);
-//    }
-
 }
