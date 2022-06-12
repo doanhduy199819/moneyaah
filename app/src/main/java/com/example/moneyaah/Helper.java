@@ -6,26 +6,15 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.example.moneyaah.classes.Record;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Helper {
-    public static void saveUser(Context context, String user) {
-        String[] values = user.split("@");
-        user = values[0];
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(Constants.USERNAME, user);
-        editor.apply();
-    }
 
-    public static String getUsername(Context context) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getString(Constants.USERNAME, "");
+    public static String getUsername() {
+        return FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
     }
 
     public static void updateNumber(String location, Double value) {

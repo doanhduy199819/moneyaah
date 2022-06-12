@@ -1,7 +1,6 @@
 package com.example.moneyaah;
 
 import android.content.Context;
-import android.view.ContentInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ public class RecordAdapter extends ArrayAdapter {
     public RecordAdapter(@NonNull Context context, List<List<Record>> recordList) {
         super(context, R.layout.list_item_record, recordList);
         this.mMonthRecordList = recordList;
-        this.username = Helper.getUsername(context);
+        this.username = Helper.getUsername();
     }
 
     @NonNull

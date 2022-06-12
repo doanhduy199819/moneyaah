@@ -1,4 +1,4 @@
-package com.example.moneyaah.classes;
+package com.example.moneyaah.model;
 
 public class Notification {
     private String title;

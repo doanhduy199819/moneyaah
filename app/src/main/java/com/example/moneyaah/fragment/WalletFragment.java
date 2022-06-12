@@ -1,31 +1,14 @@
 package com.example.moneyaah.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.moneyaah.Constants;
+import androidx.fragment.app.Fragment;
+
 import com.example.moneyaah.R;
-import com.example.moneyaah.activity.MainActivity;
-import com.example.moneyaah.model.Record;
-import com.example.moneyaah.screens.NoteScreen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.

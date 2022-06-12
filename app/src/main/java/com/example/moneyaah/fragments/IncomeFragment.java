@@ -7,10 +7,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,27 +18,22 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
-import com.example.moneyaah.Record;
 import com.example.moneyaah.classes.Category;
 import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.classes.UserDData;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Map;
 import java.util.Date;
-import java.util.Locale;
+import java.util.Map;
 
 public class IncomeFragment extends Fragment {
 
@@ -51,7 +42,6 @@ public class IncomeFragment extends Fragment {
     private EditText selectDate;
     private EditText money;
     private EditText description;
-    private Button btnSave;
     private Button btnSave;
     private TextView edtMoney;
     private TextView edtDescription;
@@ -89,7 +79,6 @@ public class IncomeFragment extends Fragment {
             }
         });
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDateTime now = LocalDateTime.now();
         selectDate.setText(dtf.format(now).toString());
 
@@ -102,7 +91,7 @@ public class IncomeFragment extends Fragment {
             public void onClick(View v) {
                 long dtStart = Date.parse(selectDate.getText().toString());
                 Date date = new Date(dtStart);
-                Record r = new Record(date, Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString());
+                Record r = new Record(String.valueOf(dtStart), Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString(),1);
 
 //                Toast.makeText(inflate.getContext(), r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription(), Toast.LENGTH_SHORT).show();
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
@@ -115,11 +104,11 @@ public class IncomeFragment extends Fragment {
 
 
     private void initUi(View inflate) {
-        selectDate = inflate.findViewById(R.id.edt_select_date);
-        btnSave = inflate.findViewById(R.id.btn_save);
-        edtMoney = inflate.findViewById(R.id.edt_money);
-        edtDescription = inflate.findViewById(R.id.edt_desc);
-        dropdown = inflate.findViewById(R.id.spinner1);
+        selectDate = inflate.findViewById(R.id.edt_iSelect_date);
+        btnSave = inflate.findViewById(R.id.btn_iSave);
+        edtMoney = inflate.findViewById(R.id.edt_iMoney);
+        edtDescription = inflate.findViewById(R.id.edt_iDescription);
+        dropdown = inflate.findViewById(R.id.spinner_iCategory);
     }
 
     private void addNewRecord() {
@@ -127,9 +116,9 @@ public class IncomeFragment extends Fragment {
         Record newRecord = new Record(selectDate.getText().toString(), Record.INCOME, recordAmount, dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), records.size() + 1);
         Map<String, Object> recordUpdate = newRecord.toMap();
         recordUpdate.put(String.valueOf(records.size() + 1), newRecord);
-        Helper.updateObject("User/" + Helper.getUsername(getActivity()) + "/Records/", newRecord);
+        Helper.updateObject("User/" + Helper.getUsername() + "/Records/", newRecord);
         recordAmount = amount + recordAmount;
-        Helper.updateNumber("User/" + Helper.getUsername(getActivity()) + "/Amount", recordAmount);
+        Helper.updateNumber("User/" + Helper.getUsername() + "/Amount", recordAmount);
     }
 
     private void showDateTimeDialog(final EditText date_time_in) {

@@ -17,6 +17,7 @@ public class RecordData {
     }
 
     public static RecordData globInstance;
+
     public static RecordData getInstance() {
         if (globInstance == null) {
             globInstance = new RecordData();
@@ -30,12 +31,12 @@ public class RecordData {
 
     public List<Record> getList(int day, int month) {
         List<Record> res = new ArrayList<>();
-        for (int i=0; i<mRecList.size(); i++) {
+        for (int i = 0; i < mRecList.size(); i++) {
             Record rec = mRecList.get(i);
             Calendar calendar = Calendar.getInstance();
 //            calendar.setTime(rec.getDate());
             if (month == calendar.get(Calendar.MONTH)
-            &&  day == calendar.get(Calendar.DAY_OF_MONTH)) {
+                    && day == calendar.get(Calendar.DAY_OF_MONTH)) {
                 res.add(rec);
             }
         }
@@ -44,10 +45,10 @@ public class RecordData {
 
     public List<Double> getListByMonth(int month) {
         List<Record> res = new ArrayList<>();
-        for (int i=0; i<mRecList.size(); i++) {
+        for (int i = 0; i < mRecList.size(); i++) {
             Record rec = mRecList.get(i);
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(rec.getDate());
+            calendar.setTime(new Date(rec.getDate()));
             if (month == calendar.get(Calendar.MONTH) && mRecList.get(i).type == 1) {
                 res.add(rec);
             }
@@ -60,8 +61,8 @@ public class RecordData {
 
         List<Double> listCategory = new ArrayList<>();
 
-        for(int i=0; i<res.size(); i++){
-            switch (res.get(i).getCategory()){
+        for (int i = 0; i < res.size(); i++) {
+            switch (res.get(i).getCategory()) {
                 case "Food":
                     food += res.get(i).getMoney();
                     break;
@@ -89,13 +90,14 @@ public class RecordData {
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         return getList(day, month);
     }
+
     public List<List<Record>> getList(int month) {
         List<List<Record>> res = new ArrayList<>();
-        for (int i=0; i<31; i++) {
+        for (int i = 0; i < 31; i++) {
             List<Record> l = new ArrayList<>();
             res.add(l);
         }
-        for (int i=0; i<mRecList.size(); i++) {
+        for (int i = 0; i < mRecList.size(); i++) {
             Record rec = mRecList.get(i);
             Calendar calendar = Calendar.getInstance();
 //            calendar.setTime(rec.getDate());
@@ -105,7 +107,7 @@ public class RecordData {
             }
         }
         List<List<Record>> res2 = new ArrayList<>();
-        for (List<Record> l: res) {
+        for (List<Record> l : res) {
             if (!l.isEmpty())
                 res2.add(l);
         }
@@ -120,17 +122,18 @@ public class RecordData {
 
     public double totalExpense() {
         double sum = 0;
-        for (Record r: mRecList) {
-            sum += r.type == Record.EXPENSE ? r.getMoney(): 0;
+        for (Record r : mRecList) {
+            sum += r.type == Record.EXPENSE ? r.getMoney() : 0;
         }
         return sum;
     }
+
     public double totalExpense(Date startDate, Date endDate) {
         double sum = 0;
-        for (Record r: mRecList) {
-            if (r.getDate().compareTo(startDate) >= 0
-            &&  r.getDate().compareTo(endDate) <= 0)
-            sum += r.type == Record.EXPENSE ? r.getMoney(): 0;
+        for (Record r : mRecList) {
+            if (r.getDate().compareTo(String.valueOf(startDate)) >= 0
+                    && r.getDate().compareTo(String.valueOf(endDate)) <= 0)
+                sum += r.type == Record.EXPENSE ? r.getMoney() : 0;
         }
         return sum;
     }

@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
-import com.example.moneyaah.Record;
+import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.ViewPagerAdapter;
 import com.example.moneyaah.activity.MainActivity;
 import com.google.android.material.tabs.TabLayout;

@@ -1,6 +1,7 @@
 package com.example.moneyaah.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.moneyaah.Constants;
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
+import com.example.moneyaah.screens.SignInScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +37,7 @@ public class ProfileFragment extends Fragment {
 
     ImageButton editButton;
     Button updateButton;
+    Button signout;
 
     TextView emailContent;
     EditText editEmail, editOldPassword, editNewPassword, editConfirmPassword;
@@ -93,7 +97,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void handleUsername() {
-        String username = Helper.getUsername(getActivity());
+        String username = Helper.getUsername();
         editEmail.setText(username);
     }
 
@@ -108,6 +112,7 @@ public class ProfileFragment extends Fragment {
         editConfirmPassword = mainView.findViewById(R.id.edit_confirm_new_password);
 
         updateButton = mainView.findViewById(R.id.button_update);
+        signout = mainView.findViewById(R.id.btn_sign_out);
     }
 
     private void setUpEvent(View mainView) {
@@ -118,8 +123,8 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 emailContent.setVisibility(View.INVISIBLE);
                 editEmail.setVisibility(View.VISIBLE);
-                editEmail.setText(Helper.getUsername(getActivity()));
-                emailContent.setText(Helper.getUsername(getActivity()));
+                editEmail.setText(Helper.getUsername());
+                emailContent.setText(Helper.getUsername());
             }
         });
 
@@ -153,6 +158,14 @@ public class ProfileFragment extends Fragment {
                 updateEmail(email);
             }
         });
+
+        signout.setOnClickListener(v -> {
+            Helper.logout();
+            Toast.makeText(requireActivity(), "Logout successfully", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(requireActivity(), SignInScreen.class);
+            startActivity(intent);
+
+        });
     }
 
     public boolean updateEmail(String email) {
@@ -163,7 +176,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Helper.getUsername(getActivity());
+                            Helper.getUsername();
                             flag[0] = true;
                         }
                     }

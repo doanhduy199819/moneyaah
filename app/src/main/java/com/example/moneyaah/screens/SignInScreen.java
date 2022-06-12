@@ -100,9 +100,6 @@ public class SignInScreen extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        Helper.saveUser(this, user.getEmail().split("@")[0]);
-                        String username = Helper.getUsername(this);
                         Intent intent = new Intent(SignInScreen.this, MainActivity.class);
                         startActivity(intent);
                     } else {

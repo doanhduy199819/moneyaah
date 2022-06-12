@@ -15,15 +15,14 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.moneyaah.GoalFragment;
 import com.example.moneyaah.Helper;
+import com.example.moneyaah.NotificationFragment;
 import com.example.moneyaah.R;
-import com.example.moneyaah.Record;
-import com.example.moneyaah.RecordData;
 import com.example.moneyaah.StatisticsFragment;
-import com.example.moneyaah.fragment.NotificationFragment;
+import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.RecordData;
 import com.example.moneyaah.fragment.ProfileFragment;
 import com.example.moneyaah.fragment.WalletFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,12 +54,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (mUser != null) {
-            String user = mUser.getEmail();
-            Helper.saveUser(this, user);
-            Log.d("Usernaem", Helper.getUsername(this));
-        } else {
-        }
         getListRecord();
         getUserCurrentAmount();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -75,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getUserCurrentAmount() {
-        String username = Helper.getUsername(this);
+        String username = Helper.getUsername();
         DatabaseReference db = Helper.getDataRef("User/"+username+"/Amount");
         ValueEventListener amountListener = new ValueEventListener() {
             @Override
@@ -91,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getListRecord() {
-        String username = Helper.getUsername(this);
+        String username = Helper.getUsername();
         DatabaseReference recordDbRef = Helper.getDataRef("User/" + username + "/Records");
         recordDbRef.addChildEventListener(new ChildEventListener() {
             @Override

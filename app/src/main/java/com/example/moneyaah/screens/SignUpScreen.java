@@ -188,9 +188,7 @@ public class SignUpScreen extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
-                                String temp = user.getEmail().split("@")[0];
-                                Helper.saveUser(SignUpScreen.this, temp);
-                                Helper.updateNumber("User/" + Helper.getUsername(SignUpScreen.this) + "/Amount", (double) 0);
+                                Helper.updateNumber("User/" + Helper.getUsername() + "/Amount", (double) 0);
                             }
                             updateUI(user);
                         } else {

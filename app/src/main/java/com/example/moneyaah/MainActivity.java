@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.classes.RecordData;
+import com.example.moneyaah.fragment.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Fragments
         walletFragment = new WalletFragment();
-        notiFragment = new NotificationFragment();
+        notiFragment = new com.example.moneyaah.NotificationFragment();
         profileFragment = new ProfileFragment();
         statisticsFragment = new StatisticsFragment();
         goalFragment = new GoalFragment();

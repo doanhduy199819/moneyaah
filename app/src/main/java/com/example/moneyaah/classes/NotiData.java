@@ -1,6 +1,6 @@
 package com.example.moneyaah.classes;
 
-import com.example.moneyaah.model.Notification;
+import com.example.moneyaah.classes.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
