@@ -105,24 +105,23 @@ public class StatisticsFragment extends Fragment {
 //        legend.setTextSize(14);
     }
 
-    public void loadPieChartData(List<Double> listData) {
+    public void loadPieChartData(List<Double> listData){
         ArrayList<PieEntry> entries = new ArrayList<>();
 
-        if (listData.get(0) > 0) {
-            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(0))), "Food"));
+        if(listData.get(0) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(0))),"Food"));
 
         }
-        if (listData.get(1) > 0) {
-            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(1))), "Coffee"));
+        if(listData.get(1) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(1))),"Coffee"));
 
         }
-        if (listData.get(2) > 0) {
-            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(2))), "Hang out"));
+        if(listData.get(2) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(2))),"Hang out"));
 
         }
-        if (listData.get(3) > 0) {
-            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(3))), "Dating"));
-
+        if(listData.get(3) > 0){
+            entries.add(new PieEntry(Float.parseFloat(String.valueOf(listData.get(3))),"Dating"));
         }
 
         ArrayList<Integer> colors = new ArrayList<>();
