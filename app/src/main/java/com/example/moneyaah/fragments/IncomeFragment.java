@@ -93,11 +93,12 @@ public class IncomeFragment extends Fragment {
                 Date date = new Date(dtStart);
                 Record r = new Record(String.valueOf(dtStart), Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString(),1);
 
-//                Toast.makeText(inflate.getContext(), r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription(), Toast.LENGTH_SHORT).show();
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
                 UserDData.get().getData().add(r);
+                getActivity().finish();
             }
         });
+
 
         return inflate;
     }
