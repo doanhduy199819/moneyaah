@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Helper {
 
     public static void saveUser(Context context, String user) {
-        String[] users= user.split("@");
+        String[] users = user.split("@");
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(Constants.USERNAME, users[0]);
@@ -49,6 +49,7 @@ public class Helper {
     }
 
     public static DatabaseReference getDataRef(String location) {
+        Log.d("LOCATION", location);
         return FirebaseDatabase.getInstance().getReference(location);
     }
 

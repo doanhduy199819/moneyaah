@@ -21,17 +21,23 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.moneyaah.Helper;
+import com.example.moneyaah.MyApplication;
 import com.example.moneyaah.R;
 import com.example.moneyaah.classes.Category;
 import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.classes.UserDData;
+import com.example.moneyaah.screens.NoteScreen;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class ExpenseFragment extends Fragment {
@@ -72,14 +78,16 @@ public class ExpenseFragment extends Fragment {
             }
         });
 
-//        Record r = new Record();
-//        UserDData.get().getData().add(r);
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, yyyy HH:mm");
         LocalDateTime now = LocalDateTime.now();
         selectDate.setText(dtf.format(now).toString());
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(), android.R.layout.simple_spinner_dropdown_item, Category.expenseNames);
+        List<String> category;
+        if (((MyApplication)getActivity().getApplication()).getExpenseCategory().size() == 0) {
+            category = Arrays.stream(Category.expenseNames)
+                    .collect(Collectors.toCollection(ArrayList::new));
+        } else category = ((MyApplication)getActivity().getApplication()).getExpenseCategory();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(), android.R.layout.simple_spinner_dropdown_item, category);
         dropdown.setAdapter(adapter);
 
         btnSave.setOnClickListener(new View.OnClickListener() {

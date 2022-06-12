@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class RecordData {
@@ -139,25 +138,5 @@ public class RecordData {
 
     public void setmRecList(List<Record> mRecList) {
         this.mRecList = mRecList;
-    }
-
-    private void fakeData() {
-
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 10, Category.INCOME.getString(0), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 11, Category.INCOME.getString(0), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 12, Category.INCOME.getString(0), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 2).getTime(), Record.INCOME, 13, Category.INCOME.getString(0), "Nothing"));
-//
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.INCOME, 14, Category.INCOME.getString(0), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(0), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 3).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(0), "Nothing"));
-//
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.INCOME, 14, Category.INCOME.getString(0), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(0), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.JUNE, 4).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(0), "Nothing"));
-//
-//        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 23).getTime(), Record.INCOME, 14, Category.INCOME.getString(Category.INCOME.TIPS), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 24).getTime(), Record.EXPENSE, 15, Category.EXPENSE.getString(Category.EXPENSE.DATING), "Nothing"));
-//        add(new Record(new GregorianCalendar(2022, Calendar.MAY, 25).getTime(), Record.EXPENSE, 16, Category.EXPENSE.getString(Category.EXPENSE.FOOD), "Nothing"));
     }
 }

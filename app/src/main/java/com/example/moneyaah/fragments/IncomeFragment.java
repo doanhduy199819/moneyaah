@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.moneyaah.Helper;
+import com.example.moneyaah.MyApplication;
 import com.example.moneyaah.R;
 import com.example.moneyaah.classes.Category;
 import com.example.moneyaah.classes.Record;
@@ -31,9 +32,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class IncomeFragment extends Fragment {
 
@@ -75,8 +80,12 @@ public class IncomeFragment extends Fragment {
 
         LocalDateTime now = LocalDateTime.now();
         selectDate.setText(dtf.format(now).toString());
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(), android.R.layout.simple_spinner_dropdown_item, Category.incomeNames);
+        List<String> category;
+        if (((MyApplication) getActivity().getApplication()).getIncomeCategory().size() == 0) {
+            category = Arrays.stream(Category.expenseNames)
+                    .collect(Collectors.toCollection(ArrayList::new));
+        } else category = ((MyApplication) getActivity().getApplication()).getIncomeCategory();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(), android.R.layout.simple_spinner_dropdown_item, category);
 //set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
 
@@ -109,7 +118,7 @@ public class IncomeFragment extends Fragment {
 
     private void addNewRecord() {
         double recordAmount = Double.parseDouble(edtMoney.getText().toString());
-        Record newRecord = new Record(selectDate.getText().toString(), Record.INCOME, recordAmount, dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), UserDData.get().getData().getAllRecords().size()+ 1);
+        Record newRecord = new Record(selectDate.getText().toString(), Record.INCOME, recordAmount, dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), UserDData.get().getData().getAllRecords().size() + 1);
         Map<String, Object> recordUpdate = newRecord.toMap();
         recordUpdate.put(String.valueOf(UserDData.get().getData().getAllRecords().size() + 1), newRecord);
         Helper.updateObject("User/" + Helper.getUsername(requireActivity()) + "/Records/", newRecord);
