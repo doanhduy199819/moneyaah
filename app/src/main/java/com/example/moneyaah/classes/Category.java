@@ -25,7 +25,7 @@ public class Category {
         public static final int FOOD = 0;
         public static final int COFFEE = 1;
         public static final int HANG_OUT = 2;
-        public static final int DATING = 2;
+        public static final int DATING = 2; // 3?
         public static String getString(int index) {
             return expenseNames[index];
         };
