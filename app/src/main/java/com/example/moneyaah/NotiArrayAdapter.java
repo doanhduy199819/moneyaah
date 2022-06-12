@@ -10,15 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.moneyaah.classes.Notification;
+import com.example.moneyaah.classes.MyNotification;
 
 import java.util.List;
 
-public class NotiArrayAdapter extends ArrayAdapter<Notification> {
+public class NotiArrayAdapter extends ArrayAdapter<MyNotification> {
 
-    List<Notification> mNotificationList;
+    List<MyNotification> mNotificationList;
 
-    public NotiArrayAdapter(@NonNull Context context, List<Notification> notificationList) {
+    public NotiArrayAdapter(@NonNull Context context, List<MyNotification> notificationList) {
         super(context, R.layout.list_item_noti, notificationList);
 
         this.mNotificationList = notificationList;

@@ -36,7 +36,7 @@
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22276422764227644" />
         <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_wallet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_list_record.xml" value="0.375" />
         <entry key="app/src/main/res/layout/list_item_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_noti.xml" value="0.1716485507246377" />
@@ -44,6 +44,7 @@
         <entry key="app/src/main/res/layout/list_item_record_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/rounded_button.xml" value="0.19895833333333332" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.15648148148148147" />
+        <entry key="app/src/main/res/menu/menu_top_actionbar.xml" value="0.13489583333333333" />
       </map>
     </option>
   </component>

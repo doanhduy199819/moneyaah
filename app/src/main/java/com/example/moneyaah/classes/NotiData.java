@@ -5,10 +5,10 @@ import java.util.List;
 
 public class NotiData {
 
-    private List<Notification> mNotiList;
+    private List<MyNotification> mNotiList;
 
     private NotiData() {
-        mNotiList = new ArrayList<Notification>();
+        mNotiList = new ArrayList<MyNotification>();
     }
 
     public static NotiData globInstance;

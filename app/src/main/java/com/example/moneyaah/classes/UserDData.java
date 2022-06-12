@@ -1,5 +1,11 @@
 package com.example.moneyaah.classes;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
+
+import com.example.moneyaah.R;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,11 +63,13 @@ public class UserDData {
     private void initData() {
         mBalance = 5000; // default
         Calendar calendar = Calendar.getInstance();
-//        Date date = new GregorianCalendar(2022, Calendar.JUNE, 2).getTime();
+//        Date date = new GregorianCalendar(2022, Calendar.JUNE, 11).getTime();
         Date date = new GregorianCalendar(2022, Calendar.JUNE, 2).getTime();
 
-        Goal eGoal = new Goal(0,70, date, 30);
+        Goal eGoal = new Goal(0,70, date, 7);
 
         setExpenseGoal(eGoal);
     }
+
+
 }
