@@ -93,7 +93,6 @@ public class WalletFragment extends Fragment {
         mAddRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Change to Add Record Screen", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), NoteScreen.class);
                 startActivity(intent);
             }

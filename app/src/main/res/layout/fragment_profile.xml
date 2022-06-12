@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ProfileFragment">
+    tools:context=".fragment.ProfileFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -198,6 +198,16 @@
                 android:layout_margin="48dp"
                 android:backgroundTint="@color/backgroundColor"
                 android:text="Update Information" />
+
+            <Button
+                android:id="@+id/btn_sign_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="48dp"
+                android:backgroundTint="#ED4444"
+                android:text="Log out" />
 
         </LinearLayout>
 

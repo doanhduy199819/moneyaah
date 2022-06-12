@@ -1,5 +1,6 @@
 package com.example.moneyaah.screens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,16 +14,32 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
+
+import com.example.moneyaah.MainActivity;
+import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.UserDData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignInScreen extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
 
     GoogleSignInButton googleSignInButton;
     GoogleSignInClient mGoogleSignInClient;
@@ -31,6 +48,7 @@ public class SignInScreen extends AppCompatActivity {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private ImageButton btnSignIn;
     private EditText edtEmail;
+    private EditText edtPassword;
     private ImageView imgTick;
 
     @Override
@@ -39,18 +57,17 @@ public class SignInScreen extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_screen);
         getSupportActionBar().hide();
 
+        mAuth = FirebaseAuth.getInstance();
+
         googleSignInButton = (GoogleSignInButton) findViewById(R.id.sign_in_button);
         btnSignIn = findViewById(R.id.btn_sign_in);
         edtEmail = findViewById(R.id.edt_email);
+        edtPassword = findViewById(R.id.edt_password);
         imgTick = findViewById(R.id.img_tick);
 
         // Navigating to Note Screen to test
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignInScreen.this, HomeScreen.class);
-                startActivity(intent);
-            }
+        btnSignIn.setOnClickListener(v -> {
+            handleSignIn(edtEmail.getText().toString(), edtPassword.getText().toString());
         });
 
 
@@ -74,21 +91,63 @@ public class SignInScreen extends AppCompatActivity {
         edtEmail.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 String email = edtEmail.getText().toString();
-                if (email.matches(emailPattern) && s.length() > 0)
-                {
+                if (email.matches(emailPattern) && s.length() > 0) {
                     imgTick.setVisibility(View.VISIBLE);
-                }
-                else
-                {
+                } else {
                     imgTick.setVisibility(View.GONE);
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
 
+    }
+
+    private void handleSignIn(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        String username = user.getEmail();
+                        Helper.saveUser(this, username);
+                        getRecord();
+                    } else {
+                        Toast.makeText(SignInScreen.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void getRecord() {
+        if (mAuth != null) {
+            String username = Helper.getUsername(this);
+            DatabaseReference recordDbRef = Helper.getDataRef("User/" + username + "/Records");
+            recordDbRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    List<Record> records = new ArrayList<>();
+                    for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        Record record = postSnapshot.getValue(Record.class);
+                        records.add(record);
+                    }
+                    UserDData.get().getData().setmRecList(records);
+                    nextIntent();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        } else nextIntent();
+    }
+
+    private void nextIntent() {
+        Intent intent = new Intent(SignInScreen.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void signIn() {

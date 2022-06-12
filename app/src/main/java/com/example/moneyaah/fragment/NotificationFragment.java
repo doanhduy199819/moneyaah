@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+//import com.example.moneyaah.classes.Notification;
 import com.example.moneyaah.classes.Notification;
 
 import java.util.ArrayList;
@@ -76,9 +77,9 @@ public class NotificationFragment extends Fragment {
             String content = "I'm hungry";
             notiArray.add(new Notification(title, content));
         }
-        NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(getActivity(),
-                notiArray);
-        mListView.setAdapter(list_noti_adapter);
+//        NotiArrayAdapter list_noti_adapter = new NotiArrayAdapter(getActivity(),
+//                notiArray);
+//        mListView.setAdapter(list_noti_adapter);
         return view;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.moneyaah;
 
 import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.moneyaah.classes.Notification;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
