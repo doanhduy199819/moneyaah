@@ -111,4 +111,6 @@ public class RecordAdapter extends ArrayAdapter {
         }
         return sum;
     }
+
+
 }

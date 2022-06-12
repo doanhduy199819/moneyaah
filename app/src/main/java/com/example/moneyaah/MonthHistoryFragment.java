@@ -28,6 +28,7 @@ public class MonthHistoryFragment extends Fragment {
     ListView mListMonthRecord;
     TextView mIncome, mExpense, mTotal;
     TextView mMonthLabel;
+    RecordAdapter monthHistoryAdapter;
 
     // Data
     List<List<Record>> listRecords;
@@ -103,6 +104,26 @@ public class MonthHistoryFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        updateUI();
+    }
+
+    public void updateUI() {
+        if (monthHistoryAdapter == null) return;
+        monthHistoryAdapter.clear();
+        listRecords = RecordData.getInstance().getList(month);
+        if (listRecords != null){
+            for (Object obj : listRecords) {
+
+                monthHistoryAdapter.insert(obj, monthHistoryAdapter.getCount());
+            }
+        }
+        monthHistoryAdapter.notifyDataSetChanged();
+    }
+
     private void setUpUI(View view) {
         mMonthLabel = view.findViewById(R.id.label_month);
         mIncome = view.findViewById(R.id.label_income_value);
@@ -123,7 +144,7 @@ public class MonthHistoryFragment extends Fragment {
 
         // List View
 
-        RecordAdapter monthHistoryAdapter = new RecordAdapter(getActivity(), listRecords);
+        monthHistoryAdapter = new RecordAdapter(getActivity(), listRecords);
         mListMonthRecord.setAdapter(monthHistoryAdapter);
     }
 

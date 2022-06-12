@@ -91,4 +91,9 @@ public class HistoryWalletFragment extends Fragment {
         mViewPager.setCurrentItem(currentMonth);
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

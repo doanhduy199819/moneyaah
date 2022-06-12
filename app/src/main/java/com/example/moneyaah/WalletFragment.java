@@ -112,4 +112,9 @@ public class WalletFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_top_actionbar, menu);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

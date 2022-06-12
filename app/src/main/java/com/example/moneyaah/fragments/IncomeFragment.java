@@ -75,7 +75,7 @@ public class IncomeFragment extends Fragment {
             public void onClick(View v) {
                 long dtStart = Date.parse(selectDate.getText().toString());
                 Date date = new Date(dtStart);
-                Record r = new Record(date, Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString());
+                Record r = new Record(date, Record.INCOME, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString());
 
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
                 UserDData.get().getData().add(r);
