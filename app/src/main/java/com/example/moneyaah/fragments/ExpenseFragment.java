@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -30,6 +29,7 @@ import com.example.moneyaah.classes.UserDData;
 import com.example.moneyaah.screens.NoteScreen;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.example.moneyaah.screens.NoteScreen;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -103,6 +103,8 @@ public class ExpenseFragment extends Fragment {
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
                 UserDData.get().getData().add(r);
                 addNewRecord();
+                getActivity().finish();
+
             }
         });
 
