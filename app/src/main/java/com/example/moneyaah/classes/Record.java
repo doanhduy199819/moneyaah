@@ -74,15 +74,4 @@ public class Record implements Comparable<Record> {
         return getDate().compareTo(rec.getDate());
     }
 
-    @Exclude
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("date", date);
-        result.put("money", money);
-        result.put("category", category);
-        result.put("type", type);
-        result.put("description", description);
-
-        return result;
-    }
 }

@@ -21,6 +21,7 @@ import com.example.moneyaah.Constants;
 import com.example.moneyaah.Helper;
 import com.example.moneyaah.R;
 import com.example.moneyaah.screens.SignInScreen;
+import com.example.moneyaah.screens.WelcomeScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -162,7 +163,7 @@ public class ProfileFragment extends Fragment {
         signout.setOnClickListener(v -> {
             Helper.logout();
             Toast.makeText(requireActivity(), "Logout successfully", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(requireActivity(), SignInScreen.class);
+            Intent intent = new Intent(requireActivity(), WelcomeScreen.class);
             startActivity(intent);
 
         });
