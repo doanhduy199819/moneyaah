@@ -46,7 +46,7 @@ public class RecordData {
         for (int i = 0; i < mRecList.size(); i++) {
             Record rec = mRecList.get(i);
             Calendar calendar = Calendar.getInstance();
-            calendar.setTime(new Date(rec.getDate()));
+            calendar.setTime(rec.getDate());
             if (month == calendar.get(Calendar.MONTH) && mRecList.get(i).type == 1) {
                 res.add(rec);
             }
@@ -129,8 +129,8 @@ public class RecordData {
     public double totalExpense(Date startDate, Date endDate) {
         double sum = 0;
         for (Record r : mRecList) {
-            if (r.getDate().compareTo(String.valueOf(startDate)) >= 0
-                    && r.getDate().compareTo(String.valueOf(endDate)) <= 0)
+            if (r.getDate().compareTo(startDate) >= 0
+                    && r.getDate().compareTo(endDate) <= 0)
                 sum += r.type == Record.EXPENSE ? r.getMoney() : 0;
         }
         return sum;

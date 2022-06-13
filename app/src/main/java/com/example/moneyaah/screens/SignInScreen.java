@@ -19,6 +19,7 @@ import com.example.moneyaah.R;
 
 import com.example.moneyaah.MainActivity;
 import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.UploadRecord;
 import com.example.moneyaah.classes.UserDData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -35,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.shobhitpuri.custombuttons.GoogleSignInButton;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SignInScreen extends AppCompatActivity {
@@ -129,12 +131,18 @@ public class SignInScreen extends AppCompatActivity {
             recordDbRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    List<Record> records = new ArrayList<>();
+                    List<UploadRecord> records = new ArrayList<>();
+                    List<Record> lrecords = new ArrayList<>();
                     for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                        Record record = postSnapshot.getValue(Record.class);
+                        UploadRecord record = postSnapshot.getValue(UploadRecord.class);
                         records.add(record);
                     }
-                    UserDData.get().getData().setmRecList(records);
+                    for (int i = 0; i < records.size(); i++) {
+                        UploadRecord record = records.get(i);
+                        Record irecord = new Record(new Date(record.getDate()), record.getType(), record.getMoney(), record.getCategory(), record.getDescription());
+                        lrecords.add(irecord);
+                    }
+                    UserDData.get().getData().setmRecList(lrecords);
                     nextIntent();
                 }
 

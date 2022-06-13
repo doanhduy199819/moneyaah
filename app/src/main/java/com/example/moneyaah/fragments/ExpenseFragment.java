@@ -25,6 +25,7 @@ import com.example.moneyaah.MyApplication;
 import com.example.moneyaah.R;
 import com.example.moneyaah.classes.Category;
 import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.UploadRecord;
 import com.example.moneyaah.classes.UserDData;
 import com.example.moneyaah.screens.NoteScreen;
 import com.google.firebase.database.DatabaseReference;
@@ -99,7 +100,8 @@ public class ExpenseFragment extends Fragment {
 
                 long dtStart = Date.parse(selectDate.getText().toString());
                 Date date = new Date(dtStart);
-                Record r = new Record(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString(), 1);
+                Record r = new Record(date, Record.EXPENSE, Double.parseDouble(money.getText().toString()), dropdown.getSelectedItem().toString(), description.getText().toString());
+
                 Log.i("Infor", r.getDate() + " " + r.getCategory() + " " + r.getMoney() + " " + r.getDescription());
                 UserDData.get().getData().add(r);
                 addNewRecord();
@@ -149,7 +151,7 @@ public class ExpenseFragment extends Fragment {
     }
 
     private void addNewRecord() {
-        Record newRecord = new Record(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(edtMoney.getText().toString()), dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), UserDData.get().getData().getAllRecords().size() + 1);
+        UploadRecord newRecord = new UploadRecord(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(edtMoney.getText().toString()), dropdown.getSelectedItem().toString(), edtDescription.getText().toString());
         Map<String, Object> recordUpdate = newRecord.toMap();
         recordUpdate.put(String.valueOf(UserDData.get().getData().getAllRecords().size() + 1), newRecord);
         Helper.updateObject("User/" + Helper.getUsername(requireActivity()) + "/Records/", newRecord);
