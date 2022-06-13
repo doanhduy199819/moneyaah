@@ -86,7 +86,6 @@ public class IncomeFragment extends Fragment {
                     .collect(Collectors.toCollection(ArrayList::new));
         } else category = ((MyApplication) getActivity().getApplication()).getIncomeCategory();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(), android.R.layout.simple_spinner_dropdown_item, category);
-//set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -122,9 +121,6 @@ public class IncomeFragment extends Fragment {
         Map<String, Object> recordUpdate = newRecord.toMap();
         recordUpdate.put(String.valueOf(UserDData.get().getData().getAllRecords().size() + 1), newRecord);
         Helper.updateObject("User/" + Helper.getUsername(requireActivity()) + "/Records/", newRecord);
-        String user = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        recordAmount = 1000000;
-        Helper.updateNumber("User/" + Helper.getUsername(requireActivity()) + "/Amount", recordAmount);
     }
 
     private void showDateTimeDialog(final EditText date_time_in) {

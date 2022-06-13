@@ -27,6 +27,9 @@ import com.example.moneyaah.classes.Category;
 import com.example.moneyaah.classes.Record;
 import com.example.moneyaah.classes.UserDData;
 import com.example.moneyaah.screens.NoteScreen;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.example.moneyaah.screens.NoteScreen;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -83,10 +86,10 @@ public class ExpenseFragment extends Fragment {
         LocalDateTime now = LocalDateTime.now();
         selectDate.setText(dtf.format(now).toString());
         List<String> category;
-        if (((MyApplication)getActivity().getApplication()).getExpenseCategory().size() == 0) {
+        if (((MyApplication) getActivity().getApplication()).getExpenseCategory().size() == 0) {
             category = Arrays.stream(Category.expenseNames)
                     .collect(Collectors.toCollection(ArrayList::new));
-        } else category = ((MyApplication)getActivity().getApplication()).getExpenseCategory();
+        } else category = ((MyApplication) getActivity().getApplication()).getExpenseCategory();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(inflate.getContext(), android.R.layout.simple_spinner_dropdown_item, category);
         dropdown.setAdapter(adapter);
 
@@ -146,12 +149,9 @@ public class ExpenseFragment extends Fragment {
     }
 
     private void addNewRecord() {
-        double recordAmount = Double.parseDouble(edtMoney.getText().toString());
         Record newRecord = new Record(selectDate.getText().toString(), Record.EXPENSE, Double.parseDouble(edtMoney.getText().toString()), dropdown.getSelectedItem().toString(), edtDescription.getText().toString(), UserDData.get().getData().getAllRecords().size() + 1);
         Map<String, Object> recordUpdate = newRecord.toMap();
         recordUpdate.put(String.valueOf(UserDData.get().getData().getAllRecords().size() + 1), newRecord);
         Helper.updateObject("User/" + Helper.getUsername(requireActivity()) + "/Records/", newRecord);
-        recordAmount = 500000;
-        Helper.updateNumber("User/" + Helper.getUsername(requireActivity()) + "/Amount", recordAmount);
     }
 }

@@ -33,7 +33,6 @@ public class Helper {
 
 
     public static void updateObject(String location, Record record) {
-        Log.d("LOCATION", location);
         DatabaseReference database = FirebaseDatabase.getInstance().getReference(location);
         database.push().setValue(record);
     }
