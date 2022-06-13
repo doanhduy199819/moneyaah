@@ -32,12 +32,6 @@ public class MonthHistoryFragment extends Fragment {
     // Data
     List<List<Record>> listRecords;
 
-    List<Record> dayTwo = new ArrayList<Record>();
-    List<Record> dayThree = new ArrayList<Record>();
-    List<Record> dayFour = new ArrayList<Record>();
-    List<Record> dayFive = new ArrayList<Record>();
-    List<Record> daySix = new ArrayList<Record>();
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -94,7 +88,7 @@ public class MonthHistoryFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_month_history, container, false);
         if (listRecords.isEmpty()) {
             mMonthLabel = view.findViewById(R.id.label_month);
-            mMonthLabel.setText("Tháng " + (month+1));
+            mMonthLabel.setText("Tháng " + (month + 1));
             return view;
         }
 
@@ -112,11 +106,12 @@ public class MonthHistoryFragment extends Fragment {
         mListMonthRecord = view.findViewById(R.id.list_month_record);
 
     }
+
     private void setUpEvents(View view) {
         listRecords = RecordData.getInstance().getList(month);
 
         // Labels
-        mMonthLabel.setText("Tháng " + String.valueOf(month+1));
+        mMonthLabel.setText("Tháng " + String.valueOf(month + 1));
         mIncome.setText("$ " + String.valueOf(getTotalIncome()));
         mExpense.setText("$ " + String.valueOf(getToTalExpense()));
         mTotal.setText("$ " + String.valueOf(getTotalIncome() - getToTalExpense()));
@@ -129,20 +124,21 @@ public class MonthHistoryFragment extends Fragment {
 
     private double getTotalIncome() {
         double sum = 0;
-        for (int i=0; i<listRecords.size(); i++) {
+        for (int i = 0; i < listRecords.size(); i++) {
             List<Record> oneDayList = listRecords.get(i);
-            for (int j=0; j<oneDayList.size(); j++) {
-                sum += (oneDayList.get(j).getType() == Record.INCOME)? oneDayList.get(j).getMoney(): 0;
+            for (int j = 0; j < oneDayList.size(); j++) {
+                sum += (oneDayList.get(j).getType() == Record.INCOME) ? oneDayList.get(j).getMoney() : 0;
             }
         }
         return sum;
     }
+
     private double getToTalExpense() {
         double sum = 0;
-        for (int i=0; i<listRecords.size(); i++) {
+        for (int i = 0; i < listRecords.size(); i++) {
             List<Record> oneDayList = listRecords.get(i);
-            for (int j=0; j<oneDayList.size(); j++) {
-                sum += (oneDayList.get(j).getType() == Record.EXPENSE)? oneDayList.get(j).getMoney(): 0;
+            for (int j = 0; j < oneDayList.size(); j++) {
+                sum += (oneDayList.get(j).getType() == Record.EXPENSE) ? oneDayList.get(j).getMoney() : 0;
             }
         }
         return sum;

@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.moneyaah.classes.Record;
+import com.example.moneyaah.classes.UploadRecord;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +33,7 @@ public class Helper {
     }
 
 
-    public static void updateObject(String location, Record record) {
+    public static void updateObject(String location, UploadRecord record) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference(location);
         database.push().setValue(record);
     }

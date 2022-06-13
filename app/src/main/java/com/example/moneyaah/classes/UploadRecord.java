@@ -6,22 +6,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Record implements Comparable<Record> {
-    // Some hints about push to main
-
+public class UploadRecord {
     public static final int INCOME = 0;
     public static final int EXPENSE = 1;
 
-    Date date;
+    String date;
     int type;
     double money;
     String category;
     String description;
 
-    public Record() {
+    public UploadRecord() {
     }
 
-    public Record(Date date, int type, double money, String category, String description) {
+    public UploadRecord(String date, int type, double money, String category, String description) {
         this.date = date;
         this.money = money;
         this.category = category;
@@ -29,11 +27,12 @@ public class Record implements Comparable<Record> {
         this.description = description;
     }
 
-    public Date getDate() {
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -69,9 +68,15 @@ public class Record implements Comparable<Record> {
         this.description = description;
     }
 
-    @Override
-    public int compareTo(Record rec) {
-        return getDate().compareTo(rec.getDate());
-    }
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("date", date);
+        result.put("money", money);
+        result.put("category", category);
+        result.put("type", type);
+        result.put("description", description);
 
+        return result;
+    }
 }
